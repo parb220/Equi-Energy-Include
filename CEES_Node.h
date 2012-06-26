@@ -7,6 +7,7 @@
 #include "CModel.h"
 #include "CTransitionModel.h"
 #include "constant.h"
+#include "CStorageHead.h"
 
 class CEES_Node
 {
@@ -58,7 +59,8 @@ public:
 	double GetTemperature() const { return CEES_Node::T[id]; }
 
 	void Initialize(CModel *, const gsl_rng *); 
-	void draw(const gsl_rng*);
+	// sdsm void draw(const gsl_rng*);			// lined with sdsm
+	void draw(const gsl_rng*, CStorageHead &); 	// linked with CStorageHead
 
 	bool EmptyBin_Get(int) const;
 	bool EmptyBin_Get(double) const; 
@@ -84,6 +86,7 @@ public:
 	static void SetSDSMParameters(int, int); 
 
 	bool EnergyRingBuildDone() const; 
+	friend ofstream & summary(ofstream &, const CEES_Node &); 
 };
 
 #endif 

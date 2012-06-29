@@ -35,6 +35,9 @@ public:
 
 	friend istream& read(istream &, CSampleIDWeight *); 
 	friend ostream& write(ostream &, const CSampleIDWeight *);
+
+	friend istream& operator>>(istream &, CSampleIDWeight &); 
+	friend ostream& operator<<(ostream &, const CSampleIDWeight &); 
 }; 
 
 #endif

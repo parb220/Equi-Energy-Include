@@ -21,8 +21,6 @@ private:
 	static int N; 		// period to build initial energy set;
 	static int dataDim; 	// data dimension
 	static int depositFreq; 	// how often to save deposit freq
-	static int sdsmPutMarker; 	// number of samples during each deposit to sdsm database; 
-	static int sdsmGetMarker; 	// number of samples during each fetch from sdsm database;
 	
 	/* instance variables */
 	int id;			// index of the this level;
@@ -49,7 +47,9 @@ public:
 	CEES_Node(int iEngergyLevel =0); 
 	CEES_Node(int, CTransitionModel *, CEES_Node *);
 	~CEES_Node();
+	
 	void SetID_LocalTarget(int); 
+	int GetID() const { return id; }
 	void SetProposal (CTransitionModel *transition) { proposal = transition; }
 	void SetHigherNodePointer (CEES_Node *higher) { next_level = higher; }
 	int BinID(int) const; 	// determine the index of the bin given the energy
@@ -59,11 +59,7 @@ public:
 	double GetTemperature() const { return CEES_Node::T[id]; }
 
 	void Initialize(CModel *, const gsl_rng *); 
-	// sdsm void draw(const gsl_rng*);			// lined with sdsm
 	void draw(const gsl_rng*, CStorageHead &); 	// linked with CStorageHead
-
-	bool EmptyBin_Get(int) const;
-	bool EmptyBin_Get(double) const; 
 
 	static void SetDataDimension(int); 
 	static int GetDataDimension() ;
@@ -83,7 +79,6 @@ public:
 
 	static bool SetTemperatures(double *, int); 
 	static bool SetTemperatures_EnergyLevels(double, double, double); 
-	static void SetSDSMParameters(int, int); 
 
 	bool EnergyRingBuildDone() const; 
 	friend ofstream & summary(ofstream &, const CEES_Node &); 

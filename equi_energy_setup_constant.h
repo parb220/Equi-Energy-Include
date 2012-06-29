@@ -4,13 +4,13 @@
 const double C = 1.4;
 const int NUMBER_ENERGY_LEVEL = 5;
 const int BURN_IN_PERIOD = 5000;
-const int BUILD_INITIAL_ENERGY_SET_PERIOD = 100000;
+const int BUILD_INITIAL_ENERGY_SET_PERIOD = 20000;
 const double H0 = 0.0;
 const double HK_1 = 63.2;
 const double T0 = 1.0;
 const double TK_1 = 60.0;
 const int DATA_DIMENSION = 2;
-const int SIMULATION_LENGTH = 500000;
+const int SIMULATION_LENGTH = 1000000;
 const double PEE = 0.1;
-const int DEPOSIT_FREQUENCY = 1;
+const int DEPOSIT_FREQUENCY = 5;
 #endif

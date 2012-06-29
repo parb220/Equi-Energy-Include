@@ -22,11 +22,11 @@ public:
 	CStorageHead(int _run_id = 0, int _get_marker = 100, int _put_marker = 100, int _number_bins = 1, string file=string("")); 
 	~CStorageHead(); 
 
-	int DepositSample(int, const CSampleIDWeight &); 
-	int DepositSample(int, const double *, int, int, double _weight=1.0);
+	virtual int DepositSample(int, const CSampleIDWeight &); 
+	virtual int DepositSample(int, const double *, int, int, double _weight=1.0);
 
-	CSampleIDWeight DrawSample(int, const gsl_rng *); 
-	void DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
+	virtual CSampleIDWeight DrawSample(int, const gsl_rng *); 
+	virtual void DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
 	bool empty(int); 
 	string GetSummaryFileName() const; 
 	friend ofstream & summary(ofstream &, const CStorageHead &); 

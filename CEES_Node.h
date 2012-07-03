@@ -23,6 +23,7 @@ private:
 	static int depositFreq; 	// how often to save deposit freq
 	
 	/* instance variables */
+protected: 
 	int id;			// index of the this level;
 	CEES_Node * next_level; 		
 
@@ -59,6 +60,7 @@ public:
 	double GetTemperature() const { return CEES_Node::T[id]; }
 
 	void Initialize(CModel *, const gsl_rng *); 
+	void Initialize(const double *, int); 
 	void draw(const gsl_rng*, CStorageHead &); 	// linked with CStorageHead
 
 	static void SetDataDimension(int); 

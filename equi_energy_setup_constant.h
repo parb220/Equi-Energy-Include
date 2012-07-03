@@ -10,7 +10,7 @@ const double HK_1 = 63.2;
 const double T0 = 1.0;
 const double TK_1 = 60.0;
 const int DATA_DIMENSION = 2;
-const int SIMULATION_LENGTH = 5000000;
-const double PEE = 0.1;
-const int DEPOSIT_FREQUENCY = 5;
+const int SIMULATION_LENGTH = 10000000;
+const double PEE = 0.2;
+const int DEPOSIT_FREQUENCY = 100;
 #endif

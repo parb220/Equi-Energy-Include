@@ -13,4 +13,6 @@ const int DATA_DIMENSION = 2;
 const int SIMULATION_LENGTH = 10000000;
 const double PEE = 0.2;
 const int DEPOSIT_FREQUENCY = 100;
+const int MH_TRACKING_FREQUENCY = 50000; 
+const int MH_TRACKING_LENGTH = 1000; 
 #endif

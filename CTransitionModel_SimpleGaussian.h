@@ -20,6 +20,7 @@ public:
 	virtual double probability(const vector <double> &, const vector <double> &); 
 	virtual int draw(double *, int, const double *, const gsl_rng *); 
 	virtual vector <double> draw(const vector < double> &, const gsl_rng *); 
+	virtual void step_size_tune(double); 
 };
 
 /*

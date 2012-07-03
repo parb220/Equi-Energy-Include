@@ -28,7 +28,14 @@ protected:
 	CEES_Node * next_level; 		
 
 	int nSamplesGenerated;	// number of sampels generated at this level;
-		
+	
+	int nMHSamplesGenerated_Recent;	// number of rencently generated MH samples
+	int nMHSamplesAccepted_Recent;	// number of recently accepted MH samples 
+	int MH_Tracking_Length; 
+	bool MH_On; 	
+	double MH_lower_target_prob; 
+	double MH_upper_target_prob;	
+	
 	double *x_current;	// own: current sample
 	double *x_new;		// own: new sample 
 	int ring_index_current; // energy ring index of current sample
@@ -42,6 +49,7 @@ protected:
 
 	int GetRingIndex(double) const;
 	bool BurnInDone();
+	void MH_Tracking_End(); 
 public:	
 	static CModel *ultimate_target;		// access: target distribution; 
 
@@ -84,6 +92,7 @@ public:
 
 	bool EnergyRingBuildDone() const; 
 	friend ofstream & summary(ofstream &, const CEES_Node &); 
+	void MH_Tracking_Start(int, double lp=0.1, double up=0.3);	// ideal acceptance rate for multi-dimensional Gaussian proposal distribution ~ 0.23 
 };
 
 #endif 

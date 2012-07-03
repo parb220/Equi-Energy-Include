@@ -13,5 +13,6 @@ public:
 	virtual double probability(const vector < double > &x, const vector <double> &y) = 0; 
 	virtual int draw(double *y, int dim, const double *x, const gsl_rng* r)=0;	// draw a sample to put into y given x
 	virtual vector < double > draw (const vector <double > &x, const gsl_rng *r)=0;
+	virtual void step_size_tune(double) = 0; 
 };
 #endif

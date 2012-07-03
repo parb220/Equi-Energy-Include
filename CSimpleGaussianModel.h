@@ -10,7 +10,7 @@
 
 class CSimpleGaussianModel : public CModel
 {
-private:	double *mu; 
+protected:	double *mu; 
 		double *sigma; 
 public:
 		CSimpleGaussianModel(int dim = 0);

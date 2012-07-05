@@ -52,6 +52,10 @@ public:
 	void DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
+
+	/* for reassigning samples into different bins */ 
+	vector <CSampleIDWeight> RetrieveSamplesSequentially(bool); 
+	void ChangeFileName(int);
 }; 
 
 #endif

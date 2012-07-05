@@ -32,6 +32,13 @@ public:
 	friend ofstream & summary(ofstream &, const CStorageHead &); 
 	bool makedir(); 
 	void finalize();
+
+	/* for reassigning samples into different bins */
+	vector < CSampleIDWeight >RetrieveSamplesSequentially(bool, int); 
+	virtual int DepositSample(bool, int, const CSampleIDWeight &); 
+	virtual int DepositSample(bool, int, const double *, int, int, double _weight = 1.0); 
+	virtual void Consolidate(int); 
+	virtual void ClearTemporaryBin(); 
 }; 
 
 #endif

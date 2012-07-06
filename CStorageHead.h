@@ -11,7 +11,7 @@ using namespace std;
 
 class CStorageHead
 {
-private:
+protected:
 	int run_id; 
 	int get_marker; 
 	int put_marker; 
@@ -32,12 +32,14 @@ public:
 	friend ofstream & summary(ofstream &, const CStorageHead &); 
 	bool makedir(); 
 	void finalize();
+	int GetNumberBins() const { return number_bins; }
 
 	/* for reassigning samples into different bins */
-	vector < CSampleIDWeight >RetrieveSamplesSequentially(bool, int); 
+	virtual vector < CSampleIDWeight >RetrieveSamplesSequentially(bool, int); 
 	virtual int DepositSample(bool, int, const CSampleIDWeight &); 
 	virtual int DepositSample(bool, int, const double *, int, int, double _weight = 1.0); 
 	virtual void Consolidate(int); 
+	virtual void CreateTemporaryBin(); 
 	virtual void ClearTemporaryBin(); 
 }; 
 

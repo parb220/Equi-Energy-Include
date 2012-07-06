@@ -11,7 +11,7 @@
 
 class CEES_Node
 {
-private:
+protected:
 	/* class variables */
 	static int K; 		// number of energy levels;
 	static vector <double >H; 	// own: lower bound energy of all energy levels
@@ -107,7 +107,7 @@ public:
 	friend void TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&); 
 
 	/* To reset H0 and make adjustment accordingly */
-private: 
+protected: 
 	void AdjustLocalTarget(); 	// Reset the local target distribution according to the newly set energy levels and temperatures. 
 	void AssignSamplesGeneratedSoFar(CStorageHead&); 
 };

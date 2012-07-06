@@ -18,6 +18,8 @@ private:
 public: 	
 	const gsl_rng *r; 
 	static CStorageHeadPthread *storage;
+	int simulationL; 
+	bool if_initialize;
 
 	CEES_Pthread(int iEnergyLevel =0); 
 	CEES_Pthread(int, CTransitionModel *, CEES_Node *); 
@@ -33,6 +35,11 @@ public:
 	void Initialize(CModel *); 
 	void Initialize();	// Take a sample from previous level for initialization
 	void draw(); 
+
+	virtual void UpdateMinEnergy(double); 
+	friend void TuneEnergyLevels_UpdateStorage(CEES_Pthread *); 
+	friend void *adjust(void *); 
+	void AssignSamplesGeneratedSoFar(); 
 }; 
 
 #endif

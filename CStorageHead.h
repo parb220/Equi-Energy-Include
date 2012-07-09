@@ -25,8 +25,8 @@ public:
 	virtual int DepositSample(int, const CSampleIDWeight &); 
 	virtual int DepositSample(int, const double *, int, int, double _weight=1.0);
 
-	virtual CSampleIDWeight DrawSample(int, const gsl_rng *); 
-	virtual void DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
+	virtual bool DrawSample(int, const gsl_rng *, CSampleIDWeight &); 
+	virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
 	bool empty(int); 
 	string GetSummaryFileName() const; 
 	friend ofstream & summary(ofstream &, const CStorageHead &); 

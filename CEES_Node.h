@@ -103,6 +103,7 @@ public:
 
 	static bool SetTemperatures(double *, int); 
 	static bool SetTemperatures_EnergyLevels(double, double, double); 
+	static bool SetTemperatures_EnergyLevels(double, double); 
 
 	friend void TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&); 
 

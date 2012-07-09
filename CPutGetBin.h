@@ -48,8 +48,8 @@ public:
 	int DepositSample(const CSampleIDWeight &); 
 	int DepositSample(const double *, int, int, double _weight=1.0); 
 
-	CSampleIDWeight DrawSample(const gsl_rng *); 
-	void DrawSample(double *, int, int &, double &, const gsl_rng *);  
+	bool DrawSample(const gsl_rng *, CSampleIDWeight &); 
+	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
 

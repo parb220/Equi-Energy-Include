@@ -33,7 +33,7 @@ public:
 	
 	void SetHigherNodePointer(const CEES_Pthread *); 
 	void Initialize(CModel *); 
-	void Initialize();	// Take a sample from previous level for initialization
+	bool Initialize();	// Take a sample from previous level for initialization
 	void draw(); 
 
 	virtual void UpdateMinEnergy(double); 

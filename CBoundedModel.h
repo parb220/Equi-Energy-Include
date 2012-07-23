@@ -14,8 +14,6 @@ private:
 	virtual vector <double> draw(const gsl_rng *); // will not be used;
 public: 
 	CBoundedModel(double h = 0, double t =0, CModel *original=NULL); 
-	virtual double probability(const double *, int) ; 
-	virtual double probability(const vector <double > &); 
 	virtual double log_prob(const double*, int) ; 
 	virtual double log_prob(const vector <double > &); 
 	virtual double energy(const double*, int) ; 

@@ -22,12 +22,8 @@ public:
 	int SetWeightParameter(const vector <double > &); 
 	void SetModelNumber(int);  
 	int GetModelNumber() const { return nModel; }
-	virtual double probability(const double *, int); 
-	virtual double probability(const vector < double > &); 
 	virtual double log_prob(const double *, int); 
 	virtual double log_prob(const vector < double > &); 
-	virtual double energy(const double *, int); 
-	virtual double energy(const vector <double > &); 
 	void CalculateSetParameterNumber();
 }; 
 

@@ -3,10 +3,10 @@
 
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_poly.h>
+#include <cfloat>
 #include <cmath>
 #include "CModel.h"
 #include "CTransitionModel.h"
-#include "constant.h"
 #include "CStorageHead.h"
 
 class CEES_Node
@@ -51,7 +51,7 @@ protected:
 	/* target and MH proposal distributions of this level */
 	CModel *target;		// own: target of this level 	
 	CTransitionModel *proposal; 	// own: proposal model used at this level
-	double ProbabilityRatio(const double *, const double *, int);  
+	double LogProbRatio(const double *, const double *, int); 
 	double OriginalEnergy(const double *x, int d) { return CEES_Node::ultimate_target->energy(x, d); }
 
 	int GetRingIndex(double) const;
@@ -75,7 +75,7 @@ public:
 
 	void Initialize(CModel *, const gsl_rng *); 
 	void Initialize(const double *, int); 
-	void draw(const gsl_rng*, CStorageHead &); 	// linked with CStorageHead
+	void draw(const gsl_rng*, CStorageHead &, int); 	// linked with CStorageHead
 
 	bool EnergyRingBuildDone() const; 
 	friend ofstream & summary(ofstream &, const CEES_Node &); 

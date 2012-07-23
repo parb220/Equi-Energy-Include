@@ -18,14 +18,12 @@ public:
 		nData = nD; 
 		nParameter = nP; 
 	}
-	virtual double probability(const double *, int)=0 ;  
-	virtual double probability(const vector <double> &)=0;
 
 	virtual double log_prob(const double *, int)=0 ;
 	virtual double log_prob(const vector <double > &)=0; 
 
-	virtual double energy(const double *, int)=0 ; 
-	virtual double energy(const vector <double > &) =0; 
+	virtual double energy(const double *, int) ; 
+	virtual double energy(const vector <double > &);  
 
 	virtual int draw(double *, int, const gsl_rng *)=0 ;
 	virtual vector < double >draw (const gsl_rng *) = 0; 

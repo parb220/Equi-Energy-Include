@@ -10,8 +10,6 @@ private:
 	int nModel; 		// Number of models;
 	CModel **model;		// array of pointers to models; 
 	double *weight; 	// weight of each component; 
-	virtual int draw(double *, int, const gsl_rng *);	// will not be used for mixture model 
-	virtual vector <double > draw(const gsl_rng *);		// will not be used for mixture model
 public: 
 	CMixtureModel(int nD=0, int nP=0, int nM=0, double *w = NULL); 
 	~CMixtureModel(); 
@@ -25,6 +23,8 @@ public:
 	virtual double log_prob(const double *, int); 
 	virtual double log_prob(const vector < double > &); 
 	void CalculateSetParameterNumber();
+	virtual int draw(double *, int, const gsl_rng *, const double *old_x = NULL, int B=0);	 
+	virtual vector <double > draw(const gsl_rng *, const vector <double > &x =vector<double>(0), int B=0);	
 }; 
 
 #endif

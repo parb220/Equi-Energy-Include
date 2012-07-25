@@ -10,8 +10,6 @@ private:
 	double 	H;	// Lower bound of energy 
 	double 	T;	// Temperature for normalization
 	CModel *OriginalModel; 	// Original model to get energy 
-	virtual int draw(double *, int, const gsl_rng*);  // will not be used 
-	virtual vector <double> draw(const gsl_rng *); // will not be used;
 public: 
 	CBoundedModel(double h = 0, double t =0, CModel *original=NULL); 
 	virtual double log_prob(const double*, int) ; 
@@ -20,6 +18,8 @@ public:
 	virtual double energy(const vector <double > &);
 	void SetH(double); 
 	void SetT(double); 
+	virtual int draw(double *, int, const gsl_rng*, const double *old_x =NULL, int B=0);  // OriginalModel->draw 
+	virtual vector <double> draw(const gsl_rng *, const vector <double> &x =vector<double>(0), int B=0); // OriginalModel->draw
 };  
 
 #endif

@@ -25,8 +25,8 @@ public:
 
 	virtual double log_prob(const double*, int); 
 	virtual double log_prob(const vector <double > &); 
-	virtual int draw(double*, int, const gsl_rng*); 
-	vector < double > draw(const gsl_rng*); 
+	virtual int draw(double*, int, const gsl_rng*, const double *old_x = NULL, int B=0);
+	vector < double > draw(const gsl_rng*, const vector <double> &old_x = vector<double>(0), int B=0); 
 }; 
 
 #endif

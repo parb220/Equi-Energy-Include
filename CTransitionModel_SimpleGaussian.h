@@ -18,9 +18,10 @@ public:
 
 	virtual double log_prob(const double *, const double *, int); 
 	virtual double log_prob(const vector < double > &, const vector < double > &); 
-	virtual int draw(double *, int, const double *, const gsl_rng *); 
-	virtual vector <double> draw(const vector < double> &, const gsl_rng *); 
+	virtual int draw(double *, int, const double *, const gsl_rng *, int B=0); 
+	virtual vector <double> draw(const vector < double> &, const gsl_rng *, int B=0); 
 	virtual void step_size_tune(double); 
+	virtual double get_step_size() { return GetSigmaParameter(0); } 
 };
 
 /*

@@ -56,6 +56,7 @@ protected:
 
 	int GetRingIndex(double) const;
 	bool BurnInDone();
+	void Initialize(const gsl_rng *); 	// directly using target->draw to get the first sample
 public:	
 	static CModel *ultimate_target;		// access: target distribution; 
 
@@ -66,6 +67,7 @@ public:
 	void SetID_LocalTarget(int); 
 	int GetID() const { return id; }
 	void SetProposal (CTransitionModel *transition) { proposal = transition; }
+	CTransitionModel *GetProposal() const { return proposal; }
 	void SetHigherNodePointer (CEES_Node *higher) { next_level = higher; }
 	int BinID(int) const; 	// determine the index of the bin given the energy
 	int BinID(double ) const;	// determine the index of the bin given the ring index
@@ -75,10 +77,10 @@ public:
 
 	void Initialize(CModel *, const gsl_rng *); 
 	void Initialize(const double *, int); 
-	void draw(const gsl_rng*, CStorageHead &, int); 	// linked with CStorageHead
+	void draw(const gsl_rng*, CStorageHead &, int mhM=0); 	// linked with CStorageHead
 
 	bool EnergyRingBuildDone() const; 
-	friend ofstream & summary(ofstream &, const CEES_Node &); 
+	friend ofstream & summary(ofstream &, const CEES_Node *); 
 	void MH_Tracking_Start(int, double lp=0.1, double up=0.3);	// ideal acceptance rate for multi-dimensional Gaussian proposal distribution ~ 0.23 
 	
 

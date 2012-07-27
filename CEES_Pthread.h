@@ -35,6 +35,7 @@ public:
 	void Initialize(CModel *); 
 	bool Initialize();	// Take a sample from previous level for initialization
 	void draw(int mhM=0); 
+	void draw_block();
 
 	virtual void UpdateMinEnergy(double); 
 	friend void TuneEnergyLevels_UpdateStorage(CEES_Pthread *); 

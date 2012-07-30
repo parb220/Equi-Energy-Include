@@ -19,6 +19,7 @@ const bool MH_BLOCK = true;
 const bool IF_MH_TRACKING = true; 
 const int ENERGY_LEVEL_TUNING_FREQUENCY = 50000; 
 const int ENERGY_LEVEL_TUNING_MAX_TIME = 2;
+const int ENERGY_TRACKING_NUMBER = 100; 
 const bool IF_ENERGY_LEVEL_TUNING = true; 
 const int MULTIPLE_TRY_MH = 5; 
 const double INITIAL_SIGMA = 0.1; 

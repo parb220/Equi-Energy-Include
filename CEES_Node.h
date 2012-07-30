@@ -27,9 +27,9 @@ protected:
 	static vector <int> blockSize;	// size of each block
 
 protected: 
-	static double min_energy;	// record min_energy to tune energy levels. 
-	static bool if_tune_energy_level; 
-	
+	static vector <double> min_energy;	// record min_energy to tune energy levels. 
+	static vector <double> max_energy; // recod max_energy to tune energy levels	
+	static int min_max_energy_capacity; 
 	/* instance variables */
 protected: 
 	int id;			// index of the this level;
@@ -102,9 +102,8 @@ public:
 	static int GetPeriodBuildInitialRing() ; 
 	static void SetDepositFreq(int); 
 	static int GetDepositFreq();
-	static void InitializeMinEnergy(); 
-	virtual void UpdateMinEnergy(double); 
-	static bool IfTuneEnergyLevel() { return if_tune_energy_level; }
+	static void InitializeMinMaxEnergy(int); 
+	virtual void UpdateMinMaxEnergy(double); 
 	
 	static bool SetEnergyLevels(double *, int); 
 	static bool SetEnergyLevels_GeometricProgression(double, double); 

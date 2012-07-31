@@ -23,6 +23,7 @@ public:
 
 		virtual double log_prob(const double *, int); 
 		virtual double draw(double *, int, const gsl_rng *, const double *old_x = NULL, int B=0); 
+		virtual void GetMode(double *, int, int iModel=0); 
 };
 
 #endif

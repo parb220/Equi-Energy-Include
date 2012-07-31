@@ -67,6 +67,13 @@ public:
 	
 	void SetDataDimension(int nD) { nData = nD; }
 	void SetParameterNumber(int nP) { nParameter = nP; }
+
+	virtual void GetMode(double *, int, int iMode =0) = 0; 
+	/*
+ 	double *:	buffer to hold the mode
+	int:		size of buffer
+	int:		index of Mode; used for CMixtureModel to determine which component's mode to use 
+ 	*/
 };
 
 #endif

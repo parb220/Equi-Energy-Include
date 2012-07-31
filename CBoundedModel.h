@@ -17,6 +17,7 @@ public:
 	void SetH(double); 
 	void SetT(double); 
 	virtual double draw(double *, int, const gsl_rng*, const double *old_x =NULL, int B=0);  // OriginalModel->draw 
+	virtual void GetMode(double *, int, int iModel =0); 
 };  
 
 #endif

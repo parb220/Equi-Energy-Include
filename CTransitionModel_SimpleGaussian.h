@@ -12,12 +12,13 @@ class CTransitionModel_SimpleGaussian : public CTransitionModel, protected CSimp
 {
 public: 
 	CTransitionModel_SimpleGaussian(int dim=0): CSimpleGaussianModel(dim) {} 
-	CTransitionModel_SimpleGaussian(int dim, const double *s):CTransitionModel(), CSimpleGaussianModel(dim) { CSimpleGaussianModel::SetSigmaParameter(s, dim);}
+	CTransitionModel_SimpleGaussian(int dim, const double *s):CTransitionModel(), CSimpleGaussianModel(dim) { CSimpleGaussianModel::SetSigmaParameter(s,dim);}
 	~CTransitionModel_SimpleGaussian() {}
 
 	virtual double log_prob(const double *, const double *, int); 
 	virtual double draw(double *, int, const double *, const gsl_rng *, int B=0); 
-	virtual void step_size_tune(double); 
+	virtual void tune_step_size(double); 
+	virtual void set_step_size(double _s); 
 	virtual double get_step_size() { return GetSigmaParameter(0); } 
 };
 

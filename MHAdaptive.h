@@ -1,6 +1,9 @@
 #ifndef _MH_ADAPTIVE_
 #define _MH_ADAPTIVE_
 
+#include <vector>
+using namespace std;
+
 class MHAdaptive
 {
 // Dan's method
@@ -38,11 +41,10 @@ protected:
 	double sum_diff_p; // sum_i (nAccepted-nGenerated*estimatedP), also used in UpdateRegressionParameter
 	double sum_log_diff_p; 	// sum_i log(scale) *(nAccepted-nGenerated*estimatedP)
 public:
-	void UpdateRegressionParameters(int _g, int _a, double _s, int _iteration); 
-	// _g: new number of generated samples; 
-	// _n: new number of accepted samples
-	// _s: current scale
-	// _iteration: 
+	void EstimateRegressionParameters(const vector<int> &_g, const vector<int> &_a, const vector<double> &_s);  
+	// _g: number of generated samples for different stepsize;
+	// _n: number of accepted samples for different stepsize; 
+	// _s: stepsize
 	double GetStepSizeRegression() const; 
 }; 
 

@@ -20,8 +20,12 @@ private:
 public: 	
 	const gsl_rng *r; 
 	static CStorageHeadPthread *storage;
-	int simulationL; 
-	bool if_initialize;
+	int burnInL; 
+	int MHInitialL, MHMaxTime;
+	double MHTargetACC; 
+	int mMH; 
+	int simulationL;
+	int depositFreq;  
 
 	CEES_Pthread(int iEnergyLevel =0); 
 	CEES_Pthread(int, CTransitionModel *, CEES_Node *); 
@@ -39,8 +43,10 @@ public:
 	using CEES_Node::Initialize; 
 	void Initialize(CModel *); 
 	bool Initialize();	// Take a sample from previous level for initialization
-	void draw(int mhM=0); 
-	void draw_block();
+	void draw(); 
+	void BurnIn(); 
+	void MH_StepSize_Regression(); 
+	void Simulate(); 
 
 	virtual void UpdateMinMaxEnergy(double); 
 	friend void TuneEnergyLevels_UpdateStorage(CEES_Pthread *); 

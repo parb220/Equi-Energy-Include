@@ -33,7 +33,7 @@ public:
 	static bool SetEnergyLevels_GeometricProgression(double, double); 
 
 	static bool SetTemperatures(double *, int); 
-	static bool SetTemperatures_EnergyLevels(double, double, double); 
+	static bool SetTemperatures_EnergyLevels(double, double, bool); 
 	static bool SetTemperatures_EnergyLevels(double, double); 
 	
 /* class variables: block MH */
@@ -102,6 +102,7 @@ public:
 	// id	
 	void SetID_LocalTarget(int); 	// also sets the local target distribution
 	int GetID() const { return id; }
+	CEES_Node * GetNextLevel() const { return next_level; }
 
 	// proposal 
 	void SetProposal (CTransitionModel *transition, int iBlock =0) { proposal[iBlock] = transition; }

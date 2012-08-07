@@ -4,6 +4,13 @@
 #include <vector>
 using namespace std;
 
+struct AccStep {
+	int nGenerated; 
+	int nAccepted;
+        double acc;
+        double step;
+};
+
 class MHAdaptive
 {
 // Dan's method
@@ -41,11 +48,9 @@ protected:
 	double sum_diff_p; // sum_i (nAccepted-nGenerated*estimatedP), also used in UpdateRegressionParameter
 	double sum_log_diff_p; 	// sum_i log(scale) *(nAccepted-nGenerated*estimatedP)
 public:
-	void EstimateRegressionParameters(const vector<int> &_g, const vector<int> &_a, const vector<double> &_s);  
-	// _g: number of generated samples for different stepsize;
-	// _n: number of accepted samples for different stepsize; 
-	// _s: stepsize
+	void EstimateRegressionParameters(vector<AccStep> &); 
 	double GetStepSizeRegression() const; 
+	double GetStepSize(vector <AccStep>&); 
 }; 
 
 #endif

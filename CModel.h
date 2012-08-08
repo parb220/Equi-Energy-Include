@@ -48,7 +48,7 @@ public:
  	*/
 	
 	/* MH on blocks of dimensions */
-	virtual double draw(CTransitionModel **, double *, int, const double *, const gsl_rng *, vector <bool> &, int, const vector <int> & ); 
+	virtual double draw(CTransitionModel **, double *, int, const double *, const gsl_rng *, vector <bool> &, int, const vector <int> &, int mMH=0); 
 	/*
 	CTransitionModel **:	array of distribution models, each for a block
 	double *:		buffer to hold the new sample

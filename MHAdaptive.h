@@ -28,8 +28,9 @@ protected:
 	double lower_bound; 
 	double upper_bound; 
 	double previous_ratio;
+	void ResetTargetAcceptanceRate(double); 
 public: 
-	MHAdaptive(int _periodL, double _targetProb, double _a=-3.0, double _b =3.0); 
+	MHAdaptive(int _periodL, double _targetProb, double _a=1.12, double _b =-1.12); 
 	//period,  mid
 	void UpdateScale(int _g, int _a);
 	// _g: new number of generated samples
@@ -49,7 +50,10 @@ protected:
 	double sum_log_diff_p; 	// sum_i log(scale) *(nAccepted-nGenerated*estimatedP)
 public:
 	void EstimateRegressionParameters(vector<AccStep> &); 
-	double GetStepSizeRegression() const; 
+	double GetStepSizeRegression(int f=0) const;
+	// f<0:	use lower_bound to calculate stepsize; 
+	// f>0: use upper_bound to calculate stepsize; 
+	// f=0: use mid to calculate stepsize 
 	double GetStepSize(vector <AccStep>&); 
 }; 
 

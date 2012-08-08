@@ -9,7 +9,7 @@ const double HK_1 = 180;
 const double T0 = 1.0;
 const double TK_1 = 100;
 const int DATA_DIMENSION = 10;
-const int SIMULATION_LENGTH = 10000000;
+const int SIMULATION_LENGTH = 1000000;
 const double PEE = 0.3;
 const int DEPOSIT_FREQUENCY = 100;
 
@@ -23,6 +23,6 @@ const int ENERGY_LEVEL_TRACKING_WINDOW_LENGTH = 50000;
 const int ENERGY_LEVEL_TUNING_MAX_TIME = 5;
 const int ENERGY_TRACKING_NUMBER = 10000; 
 
-const int MULTIPLE_TRY_MH = 5; 
+const int MULTIPLE_TRY_MH = 0; 
 const double INITIAL_SIGMA = 1; 
 #endif

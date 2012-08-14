@@ -45,6 +45,7 @@ public:
 	void draw(); 
 	void BurnIn(); 
 	void MH_StepSize_Estimation(); 
+	void MH_StepSize_Tune(); 
 	void Simulate(); 
 
 	virtual void UpdateMinMaxEnergy(double); 

@@ -15,7 +15,7 @@ class MHAdaptive
 {
 // Dan's method
 protected:
-	int period; 
+	double old_scale; 
 	double scale; 
 	double best_scale; 
 	double low_scale; 
@@ -29,18 +29,17 @@ protected:
 	double upper_bound; 
 	double previous_ratio;
 public: 
-	MHAdaptive(int _periodL, double _targetProb, double _a=1.12, double _b =-1.12); 
-	//period,  mid
-	void UpdateScale(int _g, int _a);
+	MHAdaptive(double _targetProb, double _scale=1.0, double _a=1.12, double _b =-1.12); 
+	bool UpdateScale(int _g, int _a);
 	// _g: new number of generated samples
 	// _n: new number of accepted samples 
 	
 	double GetScale() const { return scale; }
 	double GetBestScale() const { return best_scale; }
-	int GetPeriodLength() const { return period; }
 	double GetUpperTargetAcceptanceRate() const { return upper_bound; }
 	double GetLowerTargetAcceptanceRate() const { return lower_bound; }
 	double GetTargetAcceptanceRate() const { return mid;}
+	void ResetTargetAcceptanceRate(double); 
 /* Regression method based on Graves "Automatic step size selection in random
  * walk metroplolis algorithm */
 protected:
@@ -53,7 +52,6 @@ public:
 	// f<0:	use lower_bound to calculate stepsize; 
 	// f>0: use upper_bound to calculate stepsize; 
 	// f=0: use mid to calculate stepsize 
-	void ResetTargetAcceptanceRate(double); 
 }; 
 
 #endif

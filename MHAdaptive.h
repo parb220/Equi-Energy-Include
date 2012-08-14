@@ -28,7 +28,6 @@ protected:
 	double lower_bound; 
 	double upper_bound; 
 	double previous_ratio;
-	void ResetTargetAcceptanceRate(double); 
 public: 
 	MHAdaptive(int _periodL, double _targetProb, double _a=1.12, double _b =-1.12); 
 	//period,  mid
@@ -39,22 +38,22 @@ public:
 	double GetScale() const { return scale; }
 	double GetBestScale() const { return best_scale; }
 	int GetPeriodLength() const { return period; }
+	double GetUpperTargetAcceptanceRate() const { return upper_bound; }
+	double GetLowerTargetAcceptanceRate() const { return lower_bound; }
+	double GetTargetAcceptanceRate() const { return mid;}
 /* Regression method based on Graves "Automatic step size selection in random
  * walk metroplolis algorithm */
 protected:
 	// logit(acceptace rate with step size s) = a +b log(s)
 	// logit(x) = log(x)-log(1-x)
 	double a, b; // starting value of a and b better satisfy a+b =0
-	double A, B, C; // used in UpdateRegressionParameter
-	double sum_diff_p; // sum_i (nAccepted-nGenerated*estimatedP), also used in UpdateRegressionParameter
-	double sum_log_diff_p; 	// sum_i log(scale) *(nAccepted-nGenerated*estimatedP)
 public:
-	void EstimateRegressionParameters(vector<AccStep> &); 
+	void EstimateRegressionParameters(const vector < AccStep > &); 
 	double GetStepSizeRegression(int f=0) const;
 	// f<0:	use lower_bound to calculate stepsize; 
 	// f>0: use upper_bound to calculate stepsize; 
 	// f=0: use mid to calculate stepsize 
-	double GetStepSize(vector <AccStep>&); 
+	void ResetTargetAcceptanceRate(double); 
 }; 
 
 #endif

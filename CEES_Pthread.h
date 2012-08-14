@@ -22,7 +22,6 @@ public:
 	static CStorageHeadPthread *storage;
 	int burnInL; 
 	int MHInitialL, MHMaxTime;
-	double MHTargetACC; 
 	int mMH; 
 	int simulationL;
 	int depositFreq;  
@@ -45,11 +44,11 @@ public:
 	bool Initialize();	// Take a sample from previous level for initialization
 	void draw(); 
 	void BurnIn(); 
-	void MH_StepSize_Regression(); 
+	void MH_StepSize_Estimation(); 
 	void Simulate(); 
 
 	virtual void UpdateMinMaxEnergy(double); 
-	friend void TuneEnergyLevels_UpdateStorage(CEES_Pthread *); 
+	friend bool TuneEnergyLevels_UpdateStorage(CEES_Pthread *, double, double); 
 	friend void *adjust(void *); 
 	void AssignSamplesGeneratedSoFar(); 
 }; 

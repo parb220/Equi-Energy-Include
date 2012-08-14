@@ -18,6 +18,7 @@ protected:
 	static vector <double >T; 	// own: temperature of all energy levels
 	static double pee; 	// prob of equi-energy jump
 	static int dataDim; 	// data dimension
+	static vector <double >targetAcc; 	// own: target acceptance rate for each level's MH
 
 public:
 	static void SetDataDimension(int _d) { dataDim = _d; }
@@ -35,6 +36,8 @@ public:
 	static bool SetTemperatures(double *, int); 
 	static bool SetTemperatures_EnergyLevels(double, double, bool); 
 	static bool SetTemperatures_EnergyLevels(double, double); 
+
+	static bool SetTargetAcceptanceRate(double); 
 	
 /* class variables: block MH */
 protected:
@@ -130,13 +133,15 @@ public:
 	// random number generator, storage where all levels of samples are stored, simulation length, frequency of deposit, number of MH tries	
 	
 	// Tune MH stepsize
-	void MH_StepSize_Tune(int, int, double, const gsl_rng *, int mMH=0); 	// Tune MH stepsize
-	void MH_StepSize_Regression(int, int, double, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
+	void MH_StepSize_Tune(int, int, const gsl_rng *, int mMH=0); 	// Tune MH stepsize
+	void MH_StepSize_Regression(int, int, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
+	void MH_StepSize_Estimation(int, int, const gsl_rng*, int mMH=0); 
+	// when targetAcc is large enough, set MH stepsize as the standard deviation 
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
 	friend ofstream & summary(ofstream &, const CEES_Node *); // Class variables
 	friend ofstream & summary(ofstream &, const CEES_Node &, int); // instance variables
-	friend void TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&); 
+	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, double, double); 
 
 protected: 
 	void AssignSamplesGeneratedSoFar(CStorageHead&); 

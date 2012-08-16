@@ -51,8 +51,8 @@ public:
 	
 /* class variables: regarding tuning energy levels */
 protected:
-	static vector <double> min_energy;	// record min_energy to tune energy levels. 
-	static vector <double> max_energy; // recod max_energy to tune energy levels
+	vector <double> min_energy;	// record min_energy to tune energy levels. 
+	vector <double> max_energy; // recod max_energy to tune energy levels
 	static int min_max_energy_capacity;	// max size of the above two vectors 
 	virtual void UpdateMinMaxEnergy(double); // Only MH draw will update MinMaxEnergy, because EE_draw will render a sample that is previously checked
 

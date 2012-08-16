@@ -15,7 +15,7 @@ class CEES_Pthread : public CEES_Node
 private: 
 	static vector <pthread_cond_t> condition; 
 	static vector <pthread_mutex_t> mutex; 
-	static pthread_mutex_t global_mutex; 
+	// static pthread_mutex_t global_mutex; 
 	static vector <bool> flag; 
 public: 	
 	const gsl_rng *r; 

@@ -44,7 +44,7 @@ public:
 	bool Initialize();	// Take a sample from previous level for initialization
 	void draw(); 
 	void BurnIn(); 
-	void MH_StepSize_Estimation(); 
+	void MH_StepSize_Regression(); 
 	void MH_StepSize_Tune(); 
 	void Simulate(); 
 

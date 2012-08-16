@@ -135,8 +135,6 @@ public:
 	// Tune MH stepsize
 	void MH_StepSize_Tune(int, int, const gsl_rng *, int mMH=0); 	// Tune MH stepsize
 	void MH_StepSize_Regression(int, int, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
-	void MH_StepSize_Estimation(int, int, const gsl_rng*, int mMH=0); 
-	// when targetAcc is large enough, set MH stepsize as the standard deviation 
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
 	friend ofstream & summary(ofstream &, const CEES_Node *); // Class variables

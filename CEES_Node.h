@@ -143,6 +143,7 @@ public:
 
 protected: 
 	void AssignSamplesGeneratedSoFar(CStorageHead&); 
+	void DisregardHistorySamples(CStorageHead &); 
 };
 
 #endif 

@@ -41,6 +41,8 @@ public:
 	virtual void Consolidate(int); 
 	virtual void CreateTemporaryBin(); 
 	virtual void ClearTemporaryBin(); 
+	virtual void DisregardHistorySamples(int); 
+	virtual void ClearDepositDrawHistory(int); 
 }; 
 
 #endif

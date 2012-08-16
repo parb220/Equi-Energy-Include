@@ -51,7 +51,9 @@ public:
 	virtual void UpdateMinMaxEnergy(double); 
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Pthread *, double, double); 
 	friend void *adjust(void *); 
+	friend void *adjust_clear(void *); 
 	void AssignSamplesGeneratedSoFar(); 
+	void DisregardHistorySamples(); 
 }; 
 
 #endif

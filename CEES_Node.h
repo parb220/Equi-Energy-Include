@@ -7,7 +7,9 @@
 #include <cmath>
 #include "CModel.h"
 #include "CTransitionModel.h"
-#include "CStorageHead.h"
+#include "CParameterPackage.h"
+
+class CStorageHead; 
 
 class CEES_Node
 {
@@ -137,9 +139,8 @@ public:
 	void MH_StepSize_Regression(int, int, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
-	friend ofstream & summary(ofstream &, const CEES_Node *); // Class variables
-	friend ofstream & summary(ofstream &, const CEES_Node &, int); // instance variables
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, double, double); 
+	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
 
 protected: 
 	void AssignSamplesGeneratedSoFar(CStorageHead&); 

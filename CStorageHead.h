@@ -6,6 +6,7 @@
 #include <gsl/gsl_rng.h>
 #include "CPutGetBin.h"
 #include "CSampleIDWeight.h"
+#include "CParameterPackage.h"
 
 using namespace std; 
 
@@ -28,8 +29,6 @@ public:
 	virtual bool DrawSample(int, const gsl_rng *, CSampleIDWeight &); 
 	virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
 	bool empty(int); 
-	string GetSummaryFileName() const; 
-	friend ofstream & summary(ofstream &, const CStorageHead &); 
 	bool makedir(); 
 	void finalize();
 	int GetNumberBins() const { return number_bins; }
@@ -43,6 +42,9 @@ public:
 	virtual void ClearTemporaryBin(); 
 	virtual void DisregardHistorySamples(int); 
 	virtual void ClearDepositDrawHistory(int); 
+	void restore(const CParameterPackage &);
+
+	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 
 }; 
 
 #endif

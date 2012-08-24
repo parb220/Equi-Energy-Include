@@ -55,12 +55,25 @@ public:
 	int:			size of buffer
 	const double *:		current sample
 	vector<bool>:		vector of flags indicating which blocks are updated
-	int:			number of tries
  	int:			number of blocks
-	const int *:		vector of block sizes
+	const vector<int> &:	vector of block sizes
+	int:			number of tries
  	return:			log_prob of the new sample	
 	*/
 
+	// MH on one block
+	virtual double draw_block(int, int, CTransitionModel *, double *, int, const double *, const gsl_rng *, bool &, int mMH=0); 
+	/*
+ 	int:	offset of array	
+	int:	size of block to be udpated
+	CTransitionModel:	distribution model for the block of interest
+	double *:	buffer to hold the new sample, where only one block will be changed while other blocks remain unchanged
+	int:	size of buffer
+	const double *:	current sample
+	bool:	flag indicating whether the block is updated
+	int:	number of tries
+	return:		log_prob of the new sample
+ 	*/
 
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}

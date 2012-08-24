@@ -16,7 +16,8 @@ public:
 	CUniformModel(int nD=0); 
 	CUniformModel(int, const double*, const double*); 
 	~CUniformModel(); 
- 
+
+	virtual void SetDataDimension(int);  
 	void SetLowerBoundParameter(const double*, int); 
 	void SetUpperBoundParameter(const double*, int); 
 

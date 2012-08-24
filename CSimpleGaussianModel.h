@@ -17,6 +17,7 @@ public:
 		CSimpleGaussianModel(int, const double *, const double *); 
 		~CSimpleGaussianModel(); 
 
+		virtual void SetDataDimension(int); 
 		void SetMeanParameter(const double *, int); 
 		void SetSigmaParameter(const double *, int); 
 		double GetSigmaParameter(int i) const {return sigma[i]; }

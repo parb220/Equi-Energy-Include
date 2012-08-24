@@ -65,7 +65,7 @@ public:
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}
 	
-	void SetDataDimension(int nD) { nData = nD; }
+	virtual void SetDataDimension(int nD) { nData = nD; }
 	void SetParameterNumber(int nP) { nParameter = nP; }
 
 	virtual void GetMode(double *, int, int iMode =0) = 0; 

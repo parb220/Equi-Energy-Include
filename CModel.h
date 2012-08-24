@@ -61,8 +61,8 @@ public:
  	return:			log_prob of the new sample	
 	*/
 
-	// MH on one block
-	virtual double draw_block(int, int, CTransitionModel *, double *, int, const double *, const gsl_rng *, bool &, int mMH=0); 
+	// MH on one block while keep the other blocks fixed
+	virtual double draw_block(int, int, CTransitionModel *, double *, int, const double *, double , const gsl_rng *, bool &, int mMH=0); 
 	/*
  	int:	offset of array	
 	int:	size of block to be udpated
@@ -70,6 +70,7 @@ public:
 	double *:	buffer to hold the new sample, where only one block will be changed while other blocks remain unchanged
 	int:	size of buffer
 	const double *:	current sample
+	double:	log_prob of current sample
 	bool:	flag indicating whether the block is updated
 	int:	number of tries
 	return:		log_prob of the new sample

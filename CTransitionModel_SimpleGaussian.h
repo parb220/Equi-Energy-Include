@@ -20,6 +20,24 @@ public:
 	virtual void tune_step_size(double, int =-1); 
 	virtual void set_step_size(double _s, int =-1); 
 	virtual double get_step_size(int _dim=-1); 
+
+	virtual void Tune(double, int, int, const gsl_rng *, const CModel *, const double *, int, double, int, int);
+
+protected:
+	void TuneDimension(double, int, int, const gsl_rng *r, const CModel *, const double *, int, double, int , int );
+	/* Tune one dimension of sigma of SimpleGaussian 
+ 	double:			target acceptance rate
+	int:			length of observational period
+	int:			number of observational period
+	const gsl_rng *:	random number generator
+	const CModel:		target distribution model
+	const double *:		start point 
+	int:			size of the above array
+	double:			log_prob of start point
+	int:			offset along X (at which dimension of x)
+	int:			offset along Propoal (at which dimension of proposal model)		
+ 	*/
+
 };
 
 /*

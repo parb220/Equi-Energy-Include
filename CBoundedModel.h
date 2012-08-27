@@ -16,7 +16,7 @@ public:
 	virtual double energy(const double*, int) ; 
 	void SetH(double); 
 	void SetT(double); 
-	virtual double draw(double *, int, const gsl_rng*, const double *old_x =NULL, int B=0);  // OriginalModel->draw 
+	virtual double draw(double *, int, bool &, const gsl_rng*, const double *old_x =NULL, double log_old_prob=0, int B=0);  // OriginalModel->draw 
 	virtual void GetMode(double *, int, int iModel =0); 
 };  
 

@@ -24,23 +24,26 @@ public:
 	virtual double energy(const double *, int) ; 
 
 	/* Draw a new sample based on an old sample (without proposal model) */
-	virtual double draw(double *, int, const gsl_rng *, const double *old_x = NULL, int B=0)=0 ; 
+	virtual double draw(double *, int, bool &, const gsl_rng *, const double *old_x = NULL, double old_log_prob=0, int B=0)=0 ; 
 	/* double *:		buffer to hold the new sample
  	   int:			size of buffer
+	   bool &:		true if new sample
 	   const gsl_rng *:	random number generator
 	   const double *:	current sample
+	   double:		log prob of current sample
 	   int:			number of tries 
 	   return:		log_prob of new sample
 	*/
 	
 
 	/* MH */
-	virtual double draw(CTransitionModel *, double *, int, const double *, const gsl_rng *, bool &new_sample_flag, int B=0); 
+	virtual double draw(CTransitionModel *, double *, int, const double *, double, const gsl_rng *, bool &new_sample_flag, int B=0); 
 	/*
 	CTransitionModel *:	proposal distribution
 	double *: 		buffer to hold the new sample
 	int:			size of buffer
 	const double *:		current sample
+	double:			log prob of current sample
 	const gsl_rng *:	random number generator 
 	bool &:			whether it is a new sample
 	int:			number of tries for the multiple-try MH	
@@ -48,12 +51,13 @@ public:
  	*/
 	
 	/* MH on blocks of dimensions */
-	virtual double draw(CTransitionModel **, double *, int, const double *, const gsl_rng *, vector <bool> &, int, const vector <int> &, int mMH=0); 
+	virtual double draw(CTransitionModel **, double *, int, const double *, double, const gsl_rng *, vector <bool> &, int, const vector <int> &, int mMH=0); 
 	/*
 	CTransitionModel **:	array of distribution models, each for a block
 	double *:		buffer to hold the new sample
 	int:			size of buffer
 	const double *:		current sample
+	double:			log prob of current sample
 	vector<bool>:		vector of flags indicating which blocks are updated
  	int:			number of blocks
 	const vector<int> &:	vector of block sizes

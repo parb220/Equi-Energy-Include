@@ -7,6 +7,7 @@
 #include "CEES_Node.h"
 #include "CTransitionModel.h"
 #include "CStorageHeadPthread.h"
+#include "CParameterPackage.h"
 
 using namespace std; 
 
@@ -50,7 +51,7 @@ public:
 	void Simulate(); 
 
 	virtual void UpdateMinMaxEnergy(double); 
-	friend bool TuneEnergyLevels_UpdateStorage(CEES_Pthread *, double, double); 
+	friend bool TuneEnergyLevels_UpdateStorage(CEES_Pthread *, CParameterPackage &); 
 	friend void *adjust(void *); 
 	friend void *adjust_clear(void *); 
 	void AssignSamplesGeneratedSoFar(); 

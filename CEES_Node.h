@@ -33,11 +33,8 @@ public:
 	int GetEquiEnergyJumpProb() { return pee; }
 	
 	static bool SetEnergyLevels(double *, int); 
-	static bool SetEnergyLevels_GeometricProgression(double, double); 
 
 	static bool SetTemperatures(double *, int); 
-	static bool SetTemperatures_EnergyLevels(double, double, bool); 
-	static bool SetTemperatures_EnergyLevels(double, double); 
 
 	static bool SetTargetAcceptanceRate(double); 
 	
@@ -71,6 +68,7 @@ protected:
 	double *x_new;		// own: new sample 
 	int ring_index_current; // energy ring index of current sample
 	double energy_current; 	// energy of current sample
+	double log_prob_current; 	// own: log_prob of current_sample
 	vector <int > ring_size;	// size of the rings at this level
 
 	int GetRingIndex(double) const;	// determine at which energy level of the given energy value
@@ -84,6 +82,7 @@ protected:
 
 	/* Draw samples */
 	double LogProbRatio(const double *x, const double *y, int dim) { return target->log_prob(x, dim)-target->log_prob(y, dim); }	// log prob(x) - log prob(y)
+	double LogProbRatio_Energy(double energy_x, double energy_y); 
 	double OriginalEnergy(const double *x, int d) { return ultimate_target->energy(x, d); }		// energy of the ultimate_target
 
 	bool MH_draw(const gsl_rng *, int mMH=0);	//MH draw
@@ -139,7 +138,7 @@ public:
 	void MH_StepSize_Regression(int, int, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
-	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, double, double); 
+	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, CParameterPackage &); 
 	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
 
 protected: 

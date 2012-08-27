@@ -16,7 +16,7 @@ public:
 	~CTransitionModel_SimpleGaussian() {}
 
 	virtual double log_prob(const double *, const double *, int); 
-	virtual double draw(double *, int, bool &, const double *, double, const gsl_rng *, int B=0); 
+	virtual double draw(double *, int, bool &, const gsl_rng *, const double *, double, int =0); 
 	virtual void tune_step_size(double, int =-1); 
 	virtual void set_step_size(double _s, int =-1); 
 	virtual double get_step_size(int _dim=-1); 

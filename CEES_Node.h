@@ -120,8 +120,7 @@ public:
 	double GetTemperature() const { return CEES_Node::T[id]; }
 
 	// Initialization	
-	void Initialize(const gsl_rng *); 	// directly using target->draw to get the first sample
-	void Initialize(CModel *, const gsl_rng *); // use a random distribution model to get the first sample
+	void Initialize(const gsl_rng *, CModel * =NULL); // use a random distribution model to get the first sample; if CModel * == NULL, directly use target->draw to get the first sample
 	void Initialize(const double *, int); // use a vector for initialization
 	bool Initialize(CStorageHead &, const gsl_rng *); 	// use a sample from the higher level for initialization
 

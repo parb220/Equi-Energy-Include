@@ -40,18 +40,10 @@ public:
 	double GetLowerTargetAcceptanceRate() const { return lower_bound; }
 	double GetTargetAcceptanceRate() const { return mid;}
 	void ResetTargetAcceptanceRate(double); 
-/* Regression method based on Graves "Automatic step size selection in random
- * walk metroplolis algorithm */
 protected:
 	// logit(acceptace rate with step size s) = a +b log(s)
 	// logit(x) = log(x)-log(1-x)
 	double a, b; // starting value of a and b better satisfy a+b =0
-public:
-	void EstimateRegressionParameters(const vector < AccStep > &); 
-	double GetStepSizeRegression(int f=0) const;
-	// f<0:	use lower_bound to calculate stepsize; 
-	// f>0: use upper_bound to calculate stepsize; 
-	// f=0: use mid to calculate stepsize 
 }; 
 
 #endif

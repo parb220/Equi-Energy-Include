@@ -17,14 +17,13 @@ public:
 
 	virtual double log_prob(const double *, const double *, int); 
 	virtual double draw(double *, int, bool &, const gsl_rng *, const double *, double, int =0); 
-	virtual void tune_step_size(double, int =-1); 
 	virtual void set_step_size(double _s, int =-1); 
 	virtual double get_step_size(int _dim=-1); 
 
-	virtual void Tune(double, int, int, const gsl_rng *, const CModel *, const double *, int, double, int, int);
+	virtual void Tune(double, int, int, const gsl_rng *, CModel *, const double *, int, double, int, int);
 
 protected:
-	void TuneDimension(double, int, int, const gsl_rng *r, const CModel *, const double *, int, double, int , int );
+	void TuneDimension(double, int, int, const gsl_rng *r, CModel *, const double *, int, double, int , int );
 	/* Tune one dimension of sigma of SimpleGaussian 
  	double:			target acceptance rate
 	int:			length of observational period

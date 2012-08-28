@@ -134,7 +134,6 @@ public:
 	
 	// Tune MH stepsize
 	void MH_StepSize_Tune(int, int, const gsl_rng *, int mMH=0); 	// Tune MH stepsize
-	void MH_StepSize_Regression(int, int, const gsl_rng*, int mMH=0); // Estimate MH stepsize based on regression 
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, CParameterPackage &); 

@@ -4,17 +4,16 @@
 #include <vector>
 #include <gsl/gsl_rng.h>
 
-using namespace std;
+class CModel; 
 class CTransitionModel 
 {
 public:
 	virtual double log_prob(const double *x, const double *y, int dim)=0; 
 	virtual double draw(double *y, int dY, bool &if_new_sample, const gsl_rng *r, const double *x, double log_prob_x, int B=0)=0;	// draw a sample to put into y given x
-	virtual void tune_step_size(double, int =-1) = 0; 
 	virtual double get_step_size(int =-1) = 0; 
 	virtual void set_step_size(double, int=-1) = 0; 
 
-	virtual void Tune(double, int, int, const gsl_rng *, const CModel *, const double *, int, double, int, int) = 0; 
+	virtual void Tune(double, int, int, const gsl_rng *, CModel *, const double *, int, double, int, int) = 0; 
 	/*
  	double:			target acceptance rate
 	int:			length of observational period

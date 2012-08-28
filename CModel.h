@@ -37,7 +37,7 @@ public:
 	
 
 	/* MH */
-	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0); 
+	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0) ;  
 	/*
 	CTransitionModel *:	proposal distribution
 	double *: 		buffer to hold the new sample
@@ -51,7 +51,7 @@ public:
  	*/
 	
 	/* MH on blocks of dimensions */
-	virtual double draw(CTransitionModel **, double *, int, vector <bool> &,  const gsl_rng *, const double *, double, int, const vector <int> &, int mMH=0); 
+	virtual double draw(CTransitionModel **, double *, int, vector <bool> &,  const gsl_rng *, const double *, double, int, const vector <int> &, int mMH=0) ; 
 	/*
 	CTransitionModel **:	array of distribution models, each for a block
 	double *:		buffer to hold the new sample
@@ -67,7 +67,7 @@ public:
 	*/
 
 	// MH on one block while keep the other blocks fixed
-	virtual double draw_block(int, int, CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int mMH=0); 
+	virtual double draw_block(int, int, CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int mMH=0) ; 
 	/*
  	int:			offset of array	
 	int:			size of block to be udpated

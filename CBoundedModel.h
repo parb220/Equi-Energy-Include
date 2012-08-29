@@ -18,7 +18,7 @@ public:
 	virtual double energy(CSampleIDWeight &x); 
 	void SetH(double); 
 	void SetT(double); 
-	virtual double draw(double *, int, bool &, const gsl_rng*, const double * =NULL, double =0, int =0);  // OriginalModel->draw 
+	virtual double draw(double *, int, bool &, const gsl_rng*, int mMH=0);  // OriginalModel->draw 
 	virtual void GetMode(double *, int, int iModel =0); 
 };  
 

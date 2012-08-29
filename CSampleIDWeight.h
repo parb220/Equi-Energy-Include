@@ -26,6 +26,7 @@ public:
 	void SetDataDimension(int); 
 	int GetDataDimension() const { return dim; }
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
+	void PartialCopy(const CSampleWeight &, int offset, int length);
 	void SetID(int _id) { id = _id; } 		
 	int GetID() const { return id; }
 	void SetWeight(double _weight) { weight = _weight; if_weight_set = true; }

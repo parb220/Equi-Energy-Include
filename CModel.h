@@ -27,17 +27,18 @@ public:
 	virtual double energy(CSampleIDWeight &x) { return energy(x.GetData(), x.GetDataDimension()); } 
 
 	/* Draw a new sample based on an old sample (without proposal model) */
-	virtual double draw(double *, int, bool &, const gsl_rng *, const double *old_x = NULL, double old_log_prob=0, int B=0)=0 ; 
+	virtual double draw(double *, int, bool &, const gsl_rng *, int B=0)=0 ; 
 	/* double *:		buffer to hold the new sample
  	   int:			size of buffer
 	   bool &:		true if new sample
 	   const gsl_rng *:	random number generator
-	   const double *:	current sample
-	   double:		log prob of current sample
 	   int:			number of tries 
 	   return:		log_prob of new sample
 	*/
-	
+	virtual double draw(CSampleIDWeight &x, bool &flag, const gsl_rng *r, int B=0) 
+	{
+		return draw(x.GetData(), x.GetDataDimension(), flag, r, B); 
+	} 	
 
 	/* MH */
 	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0) ;  
@@ -52,6 +53,7 @@ public:
 	int:			number of tries for the multiple-try MH	
 	return:			log_prob of new sample
  	*/
+	virtual double draw(CTransitionaModel *, CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, double, int mMH=0); 
 	
 	/* MH on blocks of dimensions */
 	virtual double draw(CTransitionModel **, double *, int, vector <bool> &,  const gsl_rng *, const double *, double, int, const vector <int> &, int mMH=0) ; 
@@ -68,6 +70,7 @@ public:
 	int:			number of tries
  	return:			log_prob of the new sample	
 	*/
+	virtual double draw(CTransitionModel **, CSampleIDWeight &, vector<bool> &, const gsl_rng *, const CSampleIDWeight &, double, int, const vector<int> &, int mMH=0); 
 
 	// MH on one block while keep the other blocks fixed
 	virtual double draw_block(int, int, CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int mMH=0) ; 
@@ -84,6 +87,7 @@ public:
 	int:			number of tries
 	return:			log_prob of the new sample
  	*/
+	virtual double draw_block(int, int, CTransitionModel *, CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, double, int mMH=0); 
 
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}
@@ -92,6 +96,11 @@ public:
 	void SetParameterNumber(int nP) { nParameter = nP; }
 
 	virtual void GetMode(double *, int, int iMode =0) = 0; 
+	virtual void GetMode(CSampleIDWeight &x, int iMode =0)
+	{
+		x.SetDataDimension(nData); 
+		GetMode(x.GetData(), x.GetDataDimension(), iMode); 
+	}
 	/*
  	double *:	buffer to hold the mode
 	int:		size of buffer

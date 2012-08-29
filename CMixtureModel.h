@@ -21,7 +21,7 @@ public:
 	int GetModelNumber() const { return nModel; }
 	virtual double log_prob(const double *, int); 
 	void CalculateSetParameterNumber();
-	virtual double draw(double *, int, bool &, const gsl_rng *, const double * = NULL, double =0, int =0);	 
+	virtual double draw(double *, int, bool &, const gsl_rng *, int =0);	 
 	virtual void GetMode(double *,int, int iMode=0); 
 }; 
 

@@ -10,25 +10,26 @@ using namespace std;
 class CSampleIDWeight
 {
 private: 
-	static int dim; 
+	int dim; 
 	//vector <double> data; 
 	double *data; 
 	int id; 
 	double weight; 
 public: 
 	CSampleIDWeight(); 
-	CSampleIDWeight(const double *, int, double); 
+	CSampleIDWeight(const double *, int, int, double); 
 	// CSampleIDWeight(const vector <double> &, int, double); 
 	CSampleIDWeight(const CSampleIDWeight &); 
 	~CSampleIDWeight();
 
-	static void SetDataDimension(int); 
+	void SetDataDimension(int); 
+	int GetDataDimension() const { return dim; }
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
 	void SetID(int _id) { id = _id; } 		
 	int GetID() const { return id; }
 	void SetWeight(double _weight) { weight = _weight; }
 	double GetWeight() const { return weight; }
-	static int GetSize_Data();
+	int GetSize_Data();
 
 	void GetData(double *, int, int &, double &); 
 	// void GetData(vector < double > &, int &, double &);

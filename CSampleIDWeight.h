@@ -15,6 +15,7 @@ private:
 	double *data; 
 	int id; 
 	double weight; 
+	double if_weight_set; // true if weight has been specifically set
 public: 
 	CSampleIDWeight(); 
 	CSampleIDWeight(const double *, int, int, double); 
@@ -27,10 +28,12 @@ public:
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
 	void SetID(int _id) { id = _id; } 		
 	int GetID() const { return id; }
-	void SetWeight(double _weight) { weight = _weight; }
+	void SetWeight(double _weight) { weight = _weight; if_weight_set = true; }
 	double GetWeight() const { return weight; }
 	int GetSize_Data();
+	bool WeightSet () const { return if_weight_set; }
 
+	double *GetData() { return data; }
 	void GetData(double *, int, int &, double &); 
 	// void GetData(vector < double > &, int &, double &);
 

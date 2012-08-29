@@ -13,7 +13,9 @@ private:
 public: 
 	CBoundedModel(double h = 0, double t =0, CModel *original=NULL); 
 	virtual double log_prob(const double*, int) ; 
+	virtual double log_prob(CSampleIDWeight &x); 
 	virtual double energy(const double*, int) ; 
+	virtual double energy(CSampleIDWeight &x); 
 	void SetH(double); 
 	void SetT(double); 
 	virtual double draw(double *, int, bool &, const gsl_rng*, const double * =NULL, double =0, int =0);  // OriginalModel->draw 

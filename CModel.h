@@ -4,6 +4,7 @@
 #include <vector>
 #include <gsl/gsl_rng.h>
 #include "CTransitionModel.h"
+#include "CSampleIDWeight.h"
 
 using namespace std; 
 
@@ -20,8 +21,10 @@ public:
 	}
 
 	virtual double log_prob(const double *, int)=0 ;
+	virtual double log_prob(CSampleIDWeight &x) { return log_prob(x.GetData(), x.GetDataDimension()); } 
 
 	virtual double energy(const double *, int) ; 
+	virtual double energy(CSampleIDWeight &x) { return energy(x.GetData(), x.GetDataDimension()); } 
 
 	/* Draw a new sample based on an old sample (without proposal model) */
 	virtual double draw(double *, int, bool &, const gsl_rng *, const double *old_x = NULL, double old_log_prob=0, int B=0)=0 ; 

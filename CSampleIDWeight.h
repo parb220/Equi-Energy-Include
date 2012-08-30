@@ -18,8 +18,6 @@ private:
 
 public:	// The following three variables are used for draw samples
 	double log_prob; 
-	double energy;	
-	bool if_calculated;
 public: 
 	CSampleIDWeight(); 
 	CSampleIDWeight(const double *, int, int =0, double =0.0); 
@@ -31,8 +29,8 @@ public:
 	int GetDataDimension() const { return dim; }
 
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
-	void PartialCopy(const CSampleWeight &, int offset, int length);
-	void PartialCopy(int offset1, const CSampleWeight &, int offset2, int length);
+	void PartialCopyFrom(const CSampleIDWeight &, int offset, int length);
+	void PartialCopyFrom(int offset1, const CSampleIDWeight &, int offset2, int length);
 
 	void SetID(int _id) { id = _id; } 		
 	int GetID() const { return id; }
@@ -43,6 +41,7 @@ public:
 	int GetSize_Data();
 
 	double *GetData() { return data; }
+	double GetData(int i) const { return data[i]; }
 	void CopyData(double *, int, int &, double &); 
 	// void GetData(vector < double > &, int &, double &);
 

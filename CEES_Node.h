@@ -6,6 +6,7 @@
 #include <cfloat>
 #include <cmath>
 #include "CModel.h"
+#include "CSampleIDWeight.h"
 #include "CTransitionModel.h"
 #include "CParameterPackage.h"
 
@@ -64,11 +65,9 @@ protected:
 	int nSamplesGenerated;	// number of sampels generated at this level;
 	
 	/* current and new samples */ 
-	double *x_current;	// own: current sample
-	double *x_new;		// own: new sample 
+	CSampleIDWeight x_current;	// own: current sample
+	CSampleIDWeight x_new;		// own: new sample 
 	int ring_index_current; // energy ring index of current sample
-	double energy_current; 	// energy of current sample
-	double log_prob_current; 	// own: log_prob of current_sample
 	vector <int > ring_size;	// size of the rings at this level
 
 	int GetRingIndex(double) const;	// determine at which energy level of the given energy value
@@ -81,9 +80,7 @@ protected:
 	void AdjustLocalTarget(); 	// Reset the local target distribution according to the newly set energy levels and temperatures. 
 
 	/* Draw samples */
-	double LogProbRatio(const double *x, const double *y, int dim) { return target->log_prob(x, dim)-target->log_prob(y, dim); }	// log prob(x) - log prob(y)
 	double LogProbRatio_Energy(double energy_x, double energy_y); 
-	double OriginalEnergy(const double *x, int d) { return ultimate_target->energy(x, d); }		// energy of the ultimate_target
 
 	bool MH_draw(const gsl_rng *, int mMH=0);	//MH draw
 	// random number generator, number of MH tries
@@ -122,6 +119,7 @@ public:
 	// Initialization	
 	void Initialize(const gsl_rng *, CModel * =NULL); // use a random distribution model to get the first sample; if CModel * == NULL, directly use target->draw to get the first sample
 	void Initialize(const double *, int); // use a vector for initialization
+	void Initialize(CSampleIDWeight x); 
 	bool Initialize(CStorageHead &, const gsl_rng *); 	// use a sample from the higher level for initialization
 
 	// Burn-In  	

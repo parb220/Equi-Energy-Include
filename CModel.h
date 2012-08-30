@@ -13,6 +13,7 @@ class CModel
 protected:
 	int nData; 			// Dimension of data
 	int nParameter; 		// Number of Parameters
+	virtual void CalculateLogProb(CSampleIDWeight &x);
 public:
 	CModel(int nD=0, int nP=0)
 	{
@@ -21,7 +22,7 @@ public:
 	}
 
 	virtual double log_prob(const double *x, int nX)=0 ;
-	virtual double log_prob(CSampleIDWeight &x);
+	virtual double log_prob(CSampleIDWeight &x); 
 
 	virtual double energy(const double *x, int nX) ; 
 	virtual double energy(CSampleIDWeight &x); 
@@ -35,7 +36,7 @@ public:
 	   int:			number of tries 
 	   return:		log_prob of new sample
 	*/
-	virtual CSampleIDWeight draw(bool &, const gsl_rng *r, int B=0) =0; 
+	virtual CSampleIDWeight draw(bool &, const gsl_rng *r, int B=0); 
 
 	/* MH */
 	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0) ;  
@@ -50,7 +51,7 @@ public:
 	int:			number of tries for the multiple-try MH	
 	return:			log_prob of new sample
  	*/
-	virtual double draw(CTransitionaModel *, CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, double, int mMH=0); 
+	virtual CSampleIDWeight draw(CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &, int mMH=0); 
 	
 	/* MH on blocks of dimensions */
 	virtual double draw(CTransitionModel **, double *, int, vector <bool> &,  const gsl_rng *, const double *, double, int, const vector <int> &, int mMH=0) ; 
@@ -67,7 +68,7 @@ public:
 	int:			number of tries
  	return:			log_prob of the new sample	
 	*/
-	virtual double draw(CTransitionModel **, CSampleIDWeight &, vector<bool> &, const gsl_rng *, const CSampleIDWeight &, double, int, const vector<int> &, int mMH=0); 
+	virtual CSampleIDWeight draw(CTransitionModel **, vector<bool> &, const gsl_rng *, CSampleIDWeight &, int, const vector<int> &, int mMH=0); 
 
 	// MH on one block while keep the other blocks fixed
 	virtual double draw_block(int, int, CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int mMH=0) ; 
@@ -84,7 +85,7 @@ public:
 	int:			number of tries
 	return:			log_prob of the new sample
  	*/
-	virtual double draw_block(int, int, CTransitionModel *, CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, double, int mMH=0); 
+	virtual CSampleIDWeight draw_block(int, int, CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &x, int mMH=0); 
 
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}
@@ -93,10 +94,12 @@ public:
 	void SetParameterNumber(int nP) { nParameter = nP; }
 
 	virtual void GetMode(double *, int, int iMode =0) = 0; 
-	virtual void GetMode(CSampleIDWeight &x, int iMode =0)
+	virtual CSampleIDWeight GetMode(int iMode =0)
 	{
+		CSampleIDWeight x; 
 		x.SetDataDimension(nData); 
 		GetMode(x.GetData(), x.GetDataDimension(), iMode); 
+		return x; 
 	}
 	/*
  	double *:	buffer to hold the mode

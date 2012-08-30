@@ -15,27 +15,35 @@ private:
 	double *data; 
 	int id; 
 	double weight; 
-	double if_weight_set; // true if weight has been specifically set
+
+public:	// The following three variables are used for draw samples
+	double log_prob; 
+	double energy;	
+	bool if_calculated;
 public: 
 	CSampleIDWeight(); 
-	CSampleIDWeight(const double *, int, int, double); 
+	CSampleIDWeight(const double *, int, int =0, double =0.0); 
 	// CSampleIDWeight(const vector <double> &, int, double); 
 	CSampleIDWeight(const CSampleIDWeight &); 
 	~CSampleIDWeight();
 
 	void SetDataDimension(int); 
 	int GetDataDimension() const { return dim; }
+
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
 	void PartialCopy(const CSampleWeight &, int offset, int length);
+	void PartialCopy(int offset1, const CSampleWeight &, int offset2, int length);
+
 	void SetID(int _id) { id = _id; } 		
 	int GetID() const { return id; }
-	void SetWeight(double _weight) { weight = _weight; if_weight_set = true; }
+
+	void SetWeight(double _weight) { weight = _weight; }
 	double GetWeight() const { return weight; }
+
 	int GetSize_Data();
-	bool WeightSet () const { return if_weight_set; }
 
 	double *GetData() { return data; }
-	void GetData(double *, int, int &, double &); 
+	void CopyData(double *, int, int &, double &); 
 	// void GetData(vector < double > &, int &, double &);
 
 	friend istream& read(istream &, CSampleIDWeight *); 

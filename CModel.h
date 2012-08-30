@@ -20,11 +20,11 @@ public:
 		nParameter = nP; 
 	}
 
-	virtual double log_prob(const double *, int)=0 ;
-	virtual double log_prob(CSampleIDWeight &x) { return log_prob(x.GetData(), x.GetDataDimension()); } 
+	virtual double log_prob(const double *x, int nX)=0 ;
+	virtual double log_prob(CSampleIDWeight &x);
 
-	virtual double energy(const double *, int) ; 
-	virtual double energy(CSampleIDWeight &x) { return energy(x.GetData(), x.GetDataDimension()); } 
+	virtual double energy(const double *x, int nX) ; 
+	virtual double energy(CSampleIDWeight &x); 
 
 	/* Draw a new sample based on an old sample (without proposal model) */
 	virtual double draw(double *, int, bool &, const gsl_rng *, int B=0)=0 ; 
@@ -35,10 +35,7 @@ public:
 	   int:			number of tries 
 	   return:		log_prob of new sample
 	*/
-	virtual double draw(CSampleIDWeight &x, bool &flag, const gsl_rng *r, int B=0) 
-	{
-		return draw(x.GetData(), x.GetDataDimension(), flag, r, B); 
-	} 	
+	virtual CSampleIDWeight draw(bool &, const gsl_rng *r, int B=0) =0; 
 
 	/* MH */
 	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0) ;  

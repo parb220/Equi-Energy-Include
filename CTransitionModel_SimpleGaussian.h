@@ -18,21 +18,17 @@ public:
 	virtual void set_step_size(double _s, int =-1); 
 	virtual double get_step_size(int _dim=-1) const; 
 
-
-protected:
-	virtual double log_prob_raw(const double *, const double *, int) const; 
-	virtual double draw_raw(double *, int, bool &, const gsl_rng *, const double *, double, int =0) const; 
-	virtual void Tune_raw(double, int, int, const gsl_rng *, CModel *, const double *, int, double, int, int);
-	void TuneDimension_raw(double, int, int, const gsl_rng *r, CModel *, const double *, int, double, int , int );
+	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const; 
+	virtual CSampleIDWeight draw(bool &, const gsl_rng *, const CSampleIDWeight &, int =0) const; 
+	virtual void Tune(double, int, int, const gsl_rng *, CModel *, CSampleIDWeight &, int, int);
+	void TuneDimension(double, int, int, const gsl_rng *r, CModel *, CSampleIDWeight &,  int , int );
 	/* Tune one dimension of sigma of SimpleGaussian 
  	double:			target acceptance rate
 	int:			length of observational period
 	int:			number of observational period
 	const gsl_rng *:	random number generator
 	const CModel:		target distribution model
-	const double *:		start point 
-	int:			size of the above array
-	double:			log_prob of start point
+	CSampleIDWeight &:	start point
 	int:			offset along X (at which dimension of x)
 	int:			offset along Propoal (at which dimension of proposal model)		
  	*/

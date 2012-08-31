@@ -29,6 +29,8 @@ public:
 	int GetDataDimension() const { return dim; }
 
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
+	CSampleIDWeight operator+(const CSampleIDWeight &); 
+	CSampleIDWeight operator-(const CSampleIDWeight &); 
 	void PartialCopyFrom(const CSampleIDWeight &, int offset, int length);
 	void PartialCopyFrom(int offset1, const CSampleIDWeight &, int offset2, int length);
 
@@ -41,7 +43,8 @@ public:
 	int GetSize_Data() const; 
 
 	double *GetData() { return data; }
-	double GetData(int i) const { return data[i]; }
+	double & GetData(int i) { return data[i]; }
+	double & operator [](int i) { return data[i]; }
 	void CopyData(double *, int, int &, double &) const;
 	void CopyData(double *, int) const;  
 	// void GetData(vector < double > &, int &, double &);

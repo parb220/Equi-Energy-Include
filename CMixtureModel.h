@@ -10,9 +10,6 @@ protected:
 	int nModel; 		// Number of models;
 	CModel **model;		// array of pointers to models; 
 	double *weight; 	// weight of each component; 
-	virtual double log_prob_raw(const double *, int) const; 
-	virtual double draw_raw(double *, int, bool &, const gsl_rng *, int =0) const; 	 
-	virtual void GetMode_raw(double *,int, int iMode=0) const; 
 public: 
 	CMixtureModel(int nD=0, int nP=0, int nM=0, double *w = NULL); 
 	~CMixtureModel(); 
@@ -23,5 +20,8 @@ public:
 	void SetModelNumber(int);  
 	int GetModelNumber() const { return nModel; }
 	void CalculateSetParameterNumber() ;
+	virtual double log_prob(CSampleIDWeight &) const; 
+	virtual CSampleIDWeight draw(bool &, const gsl_rng *, int =0) const; 	 
+	virtual CSampleIDWeight GetMode(int iMode=0) const; 
 };
 #endif

@@ -15,8 +15,8 @@ public:
 	void SetH(double); 
 	void SetT(double); 
 	virtual double log_prob(CSampleIDWeight &) const; 
-	virtual CSampleIDWeight draw(bool &, const gsl_rng*, int mMH=0) const;  // OriginalModel->draw 
-	virtual CSampleIDWeight GetMode(int iModel =0) const; 
+	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng*, int mMH=0) const;  // OriginalModel->draw 
+	virtual void GetMode(CSampleIDWeight &, int iModel =0) const; 
 };  
 
 #endif

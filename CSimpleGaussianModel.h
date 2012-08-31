@@ -22,8 +22,8 @@ public:
 		void SetSigmaParameter(const double *, int); 
 		double GetSigmaParameter(int i) const {return sigma[i]; }
 		virtual double log_prob(CSampleIDWeight &) const; 
-		virtual CSampleIDWeight draw(bool &, const gsl_rng *, int B=0) const;
-		virtual CSampleIDWeight GetMode(int iModel=0) const; 
+		virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *, int B=0) const;
+		virtual void GetMode(CSampleIDWeight &, int iModel=0) const; 
 };
 
 #endif

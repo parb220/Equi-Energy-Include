@@ -29,8 +29,8 @@ public:
 	int GetDataDimension() const { return dim; }
 
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
-	CSampleIDWeight operator+(const CSampleIDWeight &); 
-	CSampleIDWeight operator-(const CSampleIDWeight &); 
+	void Add(const CSampleIDWeight &); 
+	void Subtract(const CSampleIDWeight &); 
 	void PartialCopyFrom(const CSampleIDWeight &, int offset, int length);
 	void PartialCopyFrom(int offset1, const CSampleIDWeight &, int offset2, int length);
 

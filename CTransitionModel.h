@@ -11,7 +11,7 @@ class CTransitionModel
 {
 public:
 	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const=0; 
-	virtual CSampleIDWeight draw(bool &if_new_sample, const gsl_rng *r, const CSampleIDWeight &x, int B=0) const=0;	// draw a sample to put into y given x
+	virtual void draw(CSampleIDWeight&, bool &if_new_sample, const gsl_rng *r, const CSampleIDWeight &x, int B=0) const=0;	// draw a sample to put into y given x
 
 	virtual double get_step_size(int =-1) const= 0; 
 	virtual void set_step_size(double, int=-1) = 0; 

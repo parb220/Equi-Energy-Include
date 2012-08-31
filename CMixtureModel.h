@@ -21,7 +21,7 @@ public:
 	int GetModelNumber() const { return nModel; }
 	void CalculateSetParameterNumber() ;
 	virtual double log_prob(CSampleIDWeight &) const; 
-	virtual CSampleIDWeight draw(bool &, const gsl_rng *, int =0) const; 	 
-	virtual CSampleIDWeight GetMode(int iMode=0) const; 
+	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *, int =0) const; 	 
+	virtual void GetMode(CSampleIDWeight &, int iMode=0) const; 
 };
 #endif

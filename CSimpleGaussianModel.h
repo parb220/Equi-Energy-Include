@@ -12,6 +12,9 @@ class CSimpleGaussianModel : public CModel
 {
 protected:	double *mu; 
 		double *sigma; 
+		virtual double log_prob_raw(const double *, int) const; 
+		virtual double draw_raw(double *, int, bool &, const gsl_rng *, int B=0) const;
+		virtual void GetMode_raw(double *, int, int iModel=0) const; 
 public:
 		CSimpleGaussianModel(int dim = 0);
 		CSimpleGaussianModel(int, const double *, const double *); 
@@ -21,10 +24,6 @@ public:
 		void SetMeanParameter(const double *, int); 
 		void SetSigmaParameter(const double *, int); 
 		double GetSigmaParameter(int i) const {return sigma[i]; }
-
-		virtual double log_prob(const double *, int); 
-		virtual double draw(double *, int, bool &, const gsl_rng *, int B=0);
-		virtual void GetMode(double *, int, int iModel=0); 
 };
 
 #endif

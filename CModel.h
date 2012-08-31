@@ -13,22 +13,11 @@ class CModel
 protected:
 	int nData; 			// Dimension of data
 	int nParameter; 		// Number of Parameters
-	virtual void CalculateLogProb(CSampleIDWeight &x);
-public:
-	CModel(int nD=0, int nP=0)
-	{
-		nData = nD; 
-		nParameter = nP; 
-	}
-
-	virtual double log_prob(const double *x, int nX)=0 ;
-	virtual double log_prob(CSampleIDWeight &x); 
-
-	virtual double energy(const double *x, int nX) ; 
-	virtual double energy(CSampleIDWeight &x); 
-
+	virtual void CalculateLogProb(CSampleIDWeight &x) const;
+	virtual double log_prob_raw(const double *x, int nX) const =0;
+	virtual double energy_raw(const double *x, int nX) const; 
 	/* Draw a new sample based on an old sample (without proposal model) */
-	virtual double draw(double *, int, bool &, const gsl_rng *, int B=0)=0 ; 
+	virtual double draw_raw(double *, int, bool &, const gsl_rng *, int B=0) const =0; 
 	/* double *:		buffer to hold the new sample
  	   int:			size of buffer
 	   bool &:		true if new sample
@@ -36,56 +25,35 @@ public:
 	   int:			number of tries 
 	   return:		log_prob of new sample
 	*/
-	virtual CSampleIDWeight draw(bool &, const gsl_rng *r, int B=0); 
+	
+	virtual void GetMode_raw(double *, int, int iMode =0) const = 0; 
+	/*
+ 	double *:	buffer to hold the mode
+	int:		size of buffer
+	int:		index of Mode; used for CMixtureModel to determine which component's mode to use 
+ 	*/
+public:
+	CModel(int nD=0, int nP=0)
+	{
+		nData = nD; 
+		nParameter = nP; 
+	}
+
+	virtual double log_prob(CSampleIDWeight &x) const; 
+
+	virtual double energy(CSampleIDWeight &x) const; 
+
+	/* Draw a new sample based on an old sample (without proposal model) */
+	virtual CSampleIDWeight draw(bool &, const gsl_rng *r, int B=0) const; 
 
 	/* MH */
-	virtual double draw(CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int B=0) ;  
-	/*
-	CTransitionModel *:	proposal distribution
-	double *: 		buffer to hold the new sample
-	int:			size of buffer
-	bool &:			whether it is a new sample
-	const gsl_rng *:	random number generator 
-	const double *:		current sample
-	double:			log prob of current sample
-	int:			number of tries for the multiple-try MH	
-	return:			log_prob of new sample
- 	*/
-	virtual CSampleIDWeight draw(CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &, int mMH=0); 
+	virtual CSampleIDWeight draw(CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &, int mMH=0) const; 
 	
 	/* MH on blocks of dimensions */
-	virtual double draw(CTransitionModel **, double *, int, vector <bool> &,  const gsl_rng *, const double *, double, int, const vector <int> &, int mMH=0) ; 
-	/*
-	CTransitionModel **:	array of distribution models, each for a block
-	double *:		buffer to hold the new sample
-	int:			size of buffer
-	vector<bool>:		vector of flags indicating which blocks are updated
-	const gsl_rng *:	random number generator
-	const double *:		current sample
-	double:			log prob of current sample
- 	int:			number of blocks
-	const vector<int> &:	vector of block sizes
-	int:			number of tries
- 	return:			log_prob of the new sample	
-	*/
-	virtual CSampleIDWeight draw(CTransitionModel **, vector<bool> &, const gsl_rng *, CSampleIDWeight &, int, const vector<int> &, int mMH=0); 
+	virtual CSampleIDWeight draw(CTransitionModel **, vector<bool> &, const gsl_rng *, CSampleIDWeight &, int, const vector<int> &, int mMH=0) const; 
 
 	// MH on one block while keep the other blocks fixed
-	virtual double draw_block(int, int, CTransitionModel *, double *, int, bool &, const gsl_rng *, const double *, double, int mMH=0) ; 
-	/*
- 	int:			offset of array	
-	int:			size of block to be udpated
-	CTransitionModel:	distribution model for the block of interest
-	double *:		buffer to hold the new sample, where only one block will be changed while other blocks remain unchanged
-	int:			size of buffer
-	bool:			flag indicating whether the block is updated
-	const gsl_rng *:	random number generator
-	const double *:		current sample
-	double:			log_prob of current sample
-	int:			number of tries
-	return:			log_prob of the new sample
- 	*/
-	virtual CSampleIDWeight draw_block(int, int, CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &x, int mMH=0); 
+	virtual CSampleIDWeight draw_block(int, int, CTransitionModel *, bool &, const gsl_rng *, CSampleIDWeight &x, int mMH=0) const; 
 
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}
@@ -93,19 +61,13 @@ public:
 	virtual void SetDataDimension(int nD) { nData = nD; }
 	void SetParameterNumber(int nP) { nParameter = nP; }
 
-	virtual void GetMode(double *, int, int iMode =0) = 0; 
-	virtual CSampleIDWeight GetMode(int iMode =0)
+	virtual CSampleIDWeight GetMode(int iMode =0) const
 	{
 		CSampleIDWeight x; 
 		x.SetDataDimension(nData); 
-		GetMode(x.GetData(), x.GetDataDimension(), iMode); 
+		GetMode_raw(x.GetData(), x.GetDataDimension(), iMode); 
 		return x; 
 	}
-	/*
- 	double *:	buffer to hold the mode
-	int:		size of buffer
-	int:		index of Mode; used for CMixtureModel to determine which component's mode to use 
- 	*/
 };
 
 #endif

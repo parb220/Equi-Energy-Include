@@ -15,15 +15,15 @@ public:
 	CTransitionModel_SimpleGaussian(int dim, const double *s):CTransitionModel(), CSimpleGaussianModel(dim) { CSimpleGaussianModel::SetSigmaParameter(s,dim);}
 	~CTransitionModel_SimpleGaussian() {}
 
-	virtual double log_prob(const double *, const double *, int); 
-	virtual double draw(double *, int, bool &, const gsl_rng *, const double *, double, int =0); 
 	virtual void set_step_size(double _s, int =-1); 
-	virtual double get_step_size(int _dim=-1); 
+	virtual double get_step_size(int _dim=-1) const; 
 
-	virtual void Tune(double, int, int, const gsl_rng *, CModel *, const double *, int, double, int, int);
 
 protected:
-	void TuneDimension(double, int, int, const gsl_rng *r, CModel *, const double *, int, double, int , int );
+	virtual double log_prob_raw(const double *, const double *, int) const; 
+	virtual double draw_raw(double *, int, bool &, const gsl_rng *, const double *, double, int =0) const; 
+	virtual void Tune_raw(double, int, int, const gsl_rng *, CModel *, const double *, int, double, int, int);
+	void TuneDimension_raw(double, int, int, const gsl_rng *r, CModel *, const double *, int, double, int , int );
 	/* Tune one dimension of sigma of SimpleGaussian 
  	double:			target acceptance rate
 	int:			length of observational period
@@ -36,7 +36,6 @@ protected:
 	int:			offset along X (at which dimension of x)
 	int:			offset along Propoal (at which dimension of proposal model)		
  	*/
-
 };
 
 /*

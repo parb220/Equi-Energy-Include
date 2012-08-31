@@ -38,11 +38,12 @@ public:
 	void SetWeight(double _weight) { weight = _weight; }
 	double GetWeight() const { return weight; }
 
-	int GetSize_Data();
+	int GetSize_Data() const; 
 
 	double *GetData() { return data; }
 	double GetData(int i) const { return data[i]; }
-	void CopyData(double *, int, int &, double &); 
+	void CopyData(double *, int, int &, double &) const;
+	void CopyData(double *, int) const;  
 	// void GetData(vector < double > &, int &, double &);
 
 	friend istream& read(istream &, CSampleIDWeight *); 

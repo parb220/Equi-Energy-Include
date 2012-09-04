@@ -11,8 +11,8 @@ using namespace std;
 class CTransitionModel_SimpleGaussian : public CTransitionModel, protected CSimpleGaussianModel
 {
 public: 
-	CTransitionModel_SimpleGaussian(int dim=0): CSimpleGaussianModel(dim) {} 
-	CTransitionModel_SimpleGaussian(int dim, const double *s):CTransitionModel(), CSimpleGaussianModel(dim) { CSimpleGaussianModel::SetSigmaParameter(s,dim);}
+	CTransitionModel_SimpleGaussian(int dim=0): CTransitionModel(), CSimpleGaussianModel(dim) {} 
+	CTransitionModel_SimpleGaussian(int dim, const double *s): CTransitionModel(), CSimpleGaussianModel(dim, NULL, s) {}
 	~CTransitionModel_SimpleGaussian() {}
 
 	virtual void set_step_size(double _s, int =-1); 
@@ -20,8 +20,8 @@ public:
 
 	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const; 
 	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, int =0) const; 
-	virtual void Tune(double, int, int, const gsl_rng *, CModel *, CSampleIDWeight &, int, int);
-	void TuneDimension(double, int, int, const gsl_rng *r, CModel *, CSampleIDWeight &,  int , int );
+	virtual void Tune(double, int, int, const gsl_rng *, const CModel *, const CSampleIDWeight &, int, int);
+	void TuneDimension(double, int, int, const gsl_rng *r, const CModel *, const CSampleIDWeight &,  int , int );
 	/* Tune one dimension of sigma of SimpleGaussian 
  	double:			target acceptance rate
 	int:			length of observational period

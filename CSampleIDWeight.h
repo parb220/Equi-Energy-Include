@@ -30,7 +30,9 @@ public:
 
 	CSampleIDWeight & operator=(const CSampleIDWeight &);
 	void Add(const CSampleIDWeight &); 
+	void Add(const double *, int); 
 	void Subtract(const CSampleIDWeight &); 
+	void Subtract(const double *, int); 
 	void PartialCopyFrom(const CSampleIDWeight &, int offset, int length);
 	void PartialCopyFrom(int offset1, const CSampleIDWeight &, int offset2, int length);
 

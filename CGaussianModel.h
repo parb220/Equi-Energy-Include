@@ -27,6 +27,7 @@ public:
 	virtual void GetEigenVector(double *, int, int =0) const; 
 	virtual void GetEigenMatrix_Row(double *, int, int =0) const; 
 
+	using CModel::draw; 
 	virtual double log_prob(CSampleIDWeight &x) const;  
 	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *r, int mMH=0) const; 
 	virtual void GetMode(CSampleIDWeight &, int iMode=0) const;  

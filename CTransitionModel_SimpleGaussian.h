@@ -19,7 +19,7 @@ public:
 	virtual double get_step_size(int _dim=-1) const; 
 
 	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const; 
-	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, int =0) const; 
+	virtual void drawMH(CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, int =0) const; 
 	virtual void Tune(double, int, int, const gsl_rng *, const CModel *, const CSampleIDWeight &, int, int);
 	void TuneDimension(double, int, int, const gsl_rng *r, const CModel *, const CSampleIDWeight &,  int , int );
 	/* Tune one dimension of sigma of SimpleGaussian 

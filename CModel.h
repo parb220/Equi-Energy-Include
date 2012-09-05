@@ -27,13 +27,13 @@ public:
 	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *r, int B=0) const = 0; 
 
 	/* MH */
-	virtual void draw(CSampleIDWeight &, const CTransitionModel *, bool &, const gsl_rng *, const CSampleIDWeight &, int mMH=0) const; 
+	virtual void drawMH(CSampleIDWeight &, const CTransitionModel *, bool &, const gsl_rng *, const CSampleIDWeight &, int mMH=0) const; 
 	
 	/* MH on blocks of dimensions */
-	virtual void draw(CSampleIDWeight &, const CTransitionModel * const *, vector<bool> &, const gsl_rng *, const CSampleIDWeight &, int, const vector<int> &, int mMH=0) const; 
+	virtual void drawMH(CSampleIDWeight &, const CTransitionModel *const*, vector<bool> &, const gsl_rng *, const CSampleIDWeight &, int, const vector<int> &, int mMH=0) const; 
 
 	// MH on one block while keep the other blocks fixed
-	virtual void draw_block(CSampleIDWeight &, int, int, const CTransitionModel *, bool &, const gsl_rng *, const CSampleIDWeight &x, int mMH=0) const; 
+	virtual void drawMH_block(CSampleIDWeight &, int, int, const CTransitionModel *, bool &, const gsl_rng *, const CSampleIDWeight &x, int mMH=0) const; 
 
 	int GetDataDimension() const { return nData; }
 	int GetParameterNumber() const { return nParameter;}

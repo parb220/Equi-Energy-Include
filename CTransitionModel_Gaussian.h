@@ -13,7 +13,7 @@ public:
 	~CTransitionModel_Gaussian() {} 
 
 	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const; 
-	virtual void draw(CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, int mMH=0) const; 
+	virtual void drawMH(CSampleIDWeight &, bool &, const gsl_rng *, const CSampleIDWeight &, int mMH=0) const; 
 
 	virtual void set_step_size(double _s, int = -1); 
 	virtual double get_step_size(int _dim=-1) const; 

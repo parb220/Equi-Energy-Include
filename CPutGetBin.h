@@ -21,18 +21,21 @@ private:
 	vector <CSampleIDWeight> dataPut; 	// space for put
 	vector <CSampleIDWeight> dataGet; 	// data for get 
 
-	bool Dump(int); 			// dump the current materials to file;
+	string GetFileNameForDump() const; 
+	bool Dump(); 			// dump the current materials to file;
 	bool Fetch(const gsl_rng*); 
  	bool ReadFromOneFile(int, int &, const vector <int> &index);
 public: 
 	CPutGetBin(int _id=0, int _nDumpFile=0, int _capacityPut=0, int _capacityGet=0, string _grandPrefix=""); 
 	~CPutGetBin();
 
+	bool if_fetchable(); 
+
 	void SetBinID(int _id) { id = _id; }
 	int GetBinID() const { return id; }
 
 	// void SetNumberSamplesGeneratedByFar(int _nTotalSamples) { nSamplesGeneratedByFar = _nTotalSamples; }
-	int GetNumberSamplesGeneratedByFar() const { return nDumpFile*capacityPut+nPutUsed; }
+	// int GetNumberSamplesGeneratedByFar() const { return nDumpFile*capacityPut+nPutUsed; }
 
 	void SetCapacity_Put (int);
 	int GetCapacity_Put() const { return capacityPut; }
@@ -40,7 +43,7 @@ public:
 	void SetCapacity_Get(int); 
 	int GetCapacity_Get() const { return capacityGet; }
 	
-	int GetNumberDataFile() const {return nDumpFile; }	
+	int GetNumberFileForFetch() const {return nDumpFile; }	
 	void SetFileNamePrefix(string _grandPrefix) { filename_prefix = _grandPrefix; } 
 	string GetFileNamePrefix() const { return filename_prefix;}	
 

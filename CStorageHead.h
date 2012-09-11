@@ -34,12 +34,6 @@ public:
 	int GetNumberBins() const { return number_bins; }
 
 	/* for reassigning samples into different bins */
-	virtual vector < CSampleIDWeight >RetrieveSamplesSequentially(bool, int); 
-	virtual int DepositSample(bool, int, const CSampleIDWeight &); 
-	virtual int DepositSample(bool, int, const double *, int, int, double _weight = 1.0); 
-	virtual void Consolidate(int); 
-	virtual void CreateTemporaryBin(); 
-	virtual void ClearTemporaryBin(); 
 	virtual void DisregardHistorySamples(int); 
 	virtual void ClearDepositDrawHistory(int); 
 	void restore(const CParameterPackage &);

@@ -138,7 +138,6 @@ public:
 	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
 
 protected: 
-	void AssignSamplesGeneratedSoFar(CStorageHead&); 
 	void DisregardHistorySamples(CStorageHead &); 
 };
 

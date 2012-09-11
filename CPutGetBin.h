@@ -55,9 +55,7 @@ public:
 	bool restore(int );	// load data from a partial file
 
 	/* for reassigning samples into different bins */ 
-	vector <CSampleIDWeight> RetrieveSamplesSequentially(bool); 
 	void DisregardHistorySamples(); 
-	void ChangeFileName(int);
 	void ClearDepositDrawHistory(); 
 }; 
 

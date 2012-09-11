@@ -21,14 +21,6 @@ public:
 
         virtual bool DrawSample(int, const gsl_rng *, CSampleIDWeight &);        
         virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *);      
-	/* for reassigning samples into different bins */
-        virtual vector < CSampleIDWeight >RetrieveSamplesSequentially(bool, int);
-        virtual int DepositSample(bool, int, const CSampleIDWeight &);
-        virtual int DepositSample(bool, int, const double *, int, int, double _weight = 1.0);
-        virtual void Consolidate(int);
-	virtual void CreateTemporaryBin(); 
-        virtual void ClearTemporaryBin();
-  
 };
 
 #endif

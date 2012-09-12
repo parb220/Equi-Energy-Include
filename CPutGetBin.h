@@ -22,9 +22,12 @@ private:
 	vector <CSampleIDWeight> dataGet; 	// data for get 
 
 	string GetFileNameForDump() const; 
+	vector <string > GetFileNameForFetch() const; 
 	bool Dump(); 			// dump the current materials to file;
-	bool Fetch(const gsl_rng*); 
- 	bool ReadFromOneFile(int, int &, const vector <int> &index);
+	bool Fetch(const gsl_rng*, const vector<string> &); 
+ 	bool ReadFromOneFile(string, int &, const vector <int> &index);
+
+	bool fetch_status; 
 public: 
 	CPutGetBin(int _id=0, int _nDumpFile=0, int _capacityPut=0, int _capacityGet=0, string _grandPrefix=""); 
 	~CPutGetBin();
@@ -43,7 +46,7 @@ public:
 	void SetCapacity_Get(int); 
 	int GetCapacity_Get() const { return capacityGet; }
 	
-	int GetNumberFileForFetch() const {return nDumpFile; }	
+	int GetNumberFileForFetch() const; 
 	int GetNumberFileForDump() const; 
 
 	void SetFileNamePrefix(string _grandPrefix) { filename_prefix = _grandPrefix; } 

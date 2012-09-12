@@ -13,6 +13,7 @@ using namespace std;
 class CStorageHead
 {
 protected:
+	int cluster_node;
 	int run_id; 
 	int get_marker; 
 	int put_marker; 
@@ -20,7 +21,7 @@ protected:
 	vector <CPutGetBin> bin; 
 	string filename_base; 
 public: 
-	CStorageHead(int _run_id = 0, int _get_marker = 100, int _put_marker = 100, int _number_bins = 1, string file=string("")); 
+	CStorageHead(int _run_id = 0, int _get_marker = 100, int _put_marker = 100, int _number_bins = 1, string file=string(""), int _node_index=0); 
 	~CStorageHead(); 
 
 	virtual int DepositSample(int, const CSampleIDWeight &); 

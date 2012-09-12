@@ -44,6 +44,8 @@ public:
 	int GetCapacity_Get() const { return capacityGet; }
 	
 	int GetNumberFileForFetch() const {return nDumpFile; }	
+	int GetNumberFileForDump() const; 
+
 	void SetFileNamePrefix(string _grandPrefix) { filename_prefix = _grandPrefix; } 
 	string GetFileNamePrefix() const { return filename_prefix;}	
 
@@ -54,7 +56,7 @@ public:
 	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
-	bool restore(int );	// load data from a partial file
+	bool restore(int);	// load data from a partial file
 
 	/* for reassigning samples into different bins */ 
 	void DisregardHistorySamples(); 

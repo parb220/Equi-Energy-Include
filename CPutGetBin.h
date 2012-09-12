@@ -56,7 +56,7 @@ public:
 	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
-	bool restore(int);	// load data from a partial file
+	bool restore();	// load data from a partial file
 
 	/* for reassigning samples into different bins */ 
 	void DisregardHistorySamples(); 

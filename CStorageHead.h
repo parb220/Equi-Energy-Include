@@ -36,7 +36,7 @@ public:
 	/* for reassigning samples into different bins */
 	virtual void DisregardHistorySamples(int); 
 	virtual void ClearDepositDrawHistory(int); 
-	void restore(const CParameterPackage &);
+	void restore();
 
 	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 
 }; 

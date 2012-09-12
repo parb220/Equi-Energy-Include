@@ -44,10 +44,10 @@ public:
 private:
 	// The following parameters can only be set after at least one run of simulation
 	vector <vector <double> > scale; 	// scale of MH proposal distribution
-	vector <int> number_samples_generated_by_far; 	// nSamplesGeneratedByFar for each bin
-	vector <int> number_files_by_far; 
+	// vector <int> number_samples_generated_by_far; 	// nSamplesGeneratedByFar for each bin
+	vector <int> number_files_fetch; 
 	vector <CSampleIDWeight> x_current;	// last samples
-	vector <int> energy_index_current;	// energy index of last samples
+	// vector <int> energy_index_current;	// energy index of last samples
 	vector <double> h, t; 	// energy-bound and temperature for all levels
 	vector <int> block_size; 	// size of each block
 public:
@@ -65,12 +65,12 @@ public:
 	bool SetMHProposalScale();
 	void SetCurrentState(const gsl_rng *); 
 
-	int EnergyIndexLastSample(int id) const { return energy_index_current[id]; }
+	// int EnergyIndexLastSample(int id) const { return energy_index_current[id]; }
 	void GetMHProposalScale (int id, double *, int) const;  
 	vector <double > GetMHProposalScale(int id) const { return scale[id]; }
-	int NumberSamplesGeneratedByFar(int id) const { return number_samples_generated_by_far[id]; } 
+	// int NumberSamplesGeneratedByFar(int id) const { return number_samples_generated_by_far[id]; } 
 	CSampleIDWeight GetCurrentState(int id) const { return x_current[id]; } 
-	int GetCurrentEnergyIndex(int id) const { return energy_index_current[id]; }
+	// int GetCurrentEnergyIndex(int id) const { return energy_index_current[id]; }
 	void GetEnergyBound(double *, int) const; 
 	void GetTemperature(double *, int) const; 
 	void GetBlockSize(int *, int) const; 

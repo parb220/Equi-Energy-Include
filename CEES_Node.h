@@ -135,7 +135,7 @@ public:
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, CParameterPackage &); 
-	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
+	friend void CParameterPackage::TraceSimulator(const CEES_Node &, int =0); 
 
 protected: 
 	void DisregardHistorySamples(CStorageHead &); 

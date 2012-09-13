@@ -15,6 +15,7 @@ class CParameterPackage
 {
 public:
 	// The following parameter can either be determined from reading the file or command line or by default values (specified in a header file)
+	 int number_cluster_node; 
 	 int run_id; 
 	 int get_marker;		// number of samples stored in memory for retrieve 
 	 int put_marker; 	// number of samples stored in memory before dumping to hard-drive
@@ -55,7 +56,7 @@ public:
 	~CParameterPackage(); 
 	bool LoadParameterFromFile(string); 
 	void TraceStorageHead(const CStorageHead &); 	
-	void TraceSimulator(const CEES_Node &); 
+	void TraceSimulator(const CEES_Node &, int _node_index=0); 
 	bool SaveParameterToFile(string);
 	bool WriteSummaryFile(string); 
 	
@@ -69,7 +70,7 @@ public:
 	void GetMHProposalScale (int id, double *, int) const;  
 	vector <double > GetMHProposalScale(int id) const { return scale[id]; }
 	// int NumberSamplesGeneratedByFar(int id) const { return number_samples_generated_by_far[id]; } 
-	CSampleIDWeight GetCurrentState(int id) const { return x_current[id]; } 
+	CSampleIDWeight GetCurrentState(int id, int _node_index=0) const { return x_current[_node_index*number_energy_level+id]; } 
 	// int GetCurrentEnergyIndex(int id) const { return energy_index_current[id]; }
 	void GetEnergyBound(double *, int) const; 
 	void GetTemperature(double *, int) const; 

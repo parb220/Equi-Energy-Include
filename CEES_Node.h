@@ -119,7 +119,7 @@ public:
 	// Initialization	
 	void Initialize(const gsl_rng *, CModel * =NULL); // use a random distribution model to get the first sample; if CModel * == NULL, directly use target->draw to get the first sample
 	void Initialize(const double *, int); // use a vector for initialization
-	void Initialize(CSampleIDWeight x); 
+	void Initialize(const CSampleIDWeight & x); 
 	bool Initialize(CStorageHead &, const gsl_rng *); 	// use a sample from the higher level for initialization
 
 	// Burn-In  	
@@ -135,7 +135,7 @@ public:
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, CParameterPackage &); 
-	friend void CParameterPackage::TraceSimulator(const CEES_Node &, int =0); 
+	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
 
 protected: 
 	void DisregardHistorySamples(CStorageHead &); 

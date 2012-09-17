@@ -29,6 +29,7 @@ private:
  	bool ReadFromOneFile(string, int &, const vector <int> &index);
 
 	bool fetch_status; 
+	int NumberRecord(string) const; 
 public: 
 	CPutGetBin(int _id=0, int _nDumpFile=0, int _capacityPut=0, int _capacityGet=0, string _grandPrefix="", int _suffix=0); 
 	~CPutGetBin();

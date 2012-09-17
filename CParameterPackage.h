@@ -56,6 +56,7 @@ public:
 	~CParameterPackage(); 
 	bool LoadParameterFromFile(string); 
 	bool LoadCurrentStateFromFile(string); 
+	bool LoadCurrentStateFromStorage(CStorageHead &, const gsl_rng *); 
 	void TraceStorageHead(const CStorageHead &); 	
 	void TraceSimulator(const CEES_Node &); 
 	bool SaveParameterToFile(string) const;

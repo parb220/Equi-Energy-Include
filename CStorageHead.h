@@ -24,14 +24,14 @@ public:
 	CStorageHead(int _run_id = 0, int _get_marker = 100, int _put_marker = 100, int _number_bins = 1, string file=string(""), int _node_index=0); 
 	~CStorageHead(); 
 
-	virtual int DepositSample(int, const CSampleIDWeight &); 
-	virtual int DepositSample(int, const double *, int, int, double _weight=1.0);
+	virtual int DepositSample(int, const CSampleIDWeight &) ; 
+	virtual int DepositSample(int, const double *, int, int, double _weight=1.0) ;
 
-	virtual bool DrawSample(int, const gsl_rng *, CSampleIDWeight &); 
-	virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *);  
+	virtual bool DrawSample(int, const gsl_rng *, CSampleIDWeight &) ; 
+	virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *) ;  
 	bool empty(int); 
 	bool makedir(); 
-	void finalize();
+	void finalize()  ;
 	int GetNumberBins() const { return number_bins; }
 
 	/* for reassigning samples into different bins */
@@ -40,6 +40,7 @@ public:
 	void restore();
 
 	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 
+	friend bool CParameterPackage::LoadCurrentStateFromStorage(CStorageHead &, const gsl_rng *); 
 }; 
 
 #endif

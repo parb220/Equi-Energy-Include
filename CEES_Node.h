@@ -93,7 +93,7 @@ protected:
 	// true for new sample
 	
 public:	
-	static CModel *ultimate_target;		// access: target distribution; 
+	CModel *ultimate_target;		// access: target distribution; 
 
 	// construct and destruct
 	CEES_Node(int =0, CTransitionModel * =NULL, CEES_Node * =NULL);

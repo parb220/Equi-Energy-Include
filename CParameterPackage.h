@@ -67,13 +67,20 @@ public:
 	bool SetEnergyBound();
 	bool SetTemperature();
 	bool SetMHProposalScale();
+	void SetMHProposalScale(int, const double *, int); 
 	void SetCurrentState(const gsl_rng *); 
+	void SetCurrentState(int, const double*, int);
 
 	// int EnergyIndexLastSample(int id) const { return energy_index_current[id]; }
 	void GetMHProposalScale (int id, double *, int) const;  
 	vector <double > GetMHProposalScale(int id) const { return scale[id]; }
+	int GetMHProposalScaleSize(int id=0) const { return (int)(scale[id].size()); }
 	// int NumberSamplesGeneratedByFar(int id) const { return number_samples_generated_by_far[id]; } 
+	void GetCurrentState(int id, double *_buffer, int _size) const 
+		{ return x_current[id].CopyData(_buffer, _size);  }
 	CSampleIDWeight GetCurrentState(int id) const { return x_current[id]; } 
+	int GetCurrentStateSize(int id=0) const { return x_current[id].GetDataDimension(); }
+
 	// int GetCurrentEnergyIndex(int id) const { return energy_index_current[id]; }
 	void GetEnergyBound(double *, int) const; 
 	void GetTemperature(double *, int) const; 

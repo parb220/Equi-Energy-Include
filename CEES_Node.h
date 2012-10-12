@@ -134,11 +134,10 @@ public:
 	void MH_StepSize_Tune(int, int, const gsl_rng *, int mMH=0); 	// Tune MH stepsize
 
 	// initialPeriodLength, periodNumber, targetProbability, random number generator
+	CSampleIDWeight GetCurrentState() const { return x_current; }
 	friend bool TuneEnergyLevels_UpdateStorage(CEES_Node*, CStorageHead&, CParameterPackage &); 
 	friend void CParameterPackage::TraceSimulator(const CEES_Node &); 
 
-protected: 
-	void DisregardHistorySamples(CStorageHead &); 
 };
 
 #endif 

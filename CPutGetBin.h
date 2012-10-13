@@ -24,9 +24,11 @@ private:
 
 	string GetFileNameForDump() const; 
 	vector <string > GetFileNameForFetch() const; 
-	bool Dump(); 			// dump the current materials to file;
+	vector <string > GetFileNameForConsolidate() const; 
+	bool Dump(string = string()); 			// dump the current materials to file;
 	bool Fetch(const gsl_rng*, const vector<string> &); 
  	bool ReadFromOneFile(string, int &, const vector <int> &index);
+	vector <CSampleIDWeight> ReadSampleFromFile(string) const;  
 
 	bool fetch_status; 
 	int NumberRecord(string) const; 
@@ -61,6 +63,7 @@ public:
 	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
+	void consolidate(); 
 	bool restore();	// load data from a partial file
 
 	/* for reassigning samples into different bins */ 

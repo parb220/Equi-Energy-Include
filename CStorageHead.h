@@ -35,8 +35,9 @@ public:
 	int GetNumberBins() const { return number_bins; }
 
 	/* for reassigning samples into different bins */
-	virtual void DisregardHistorySamples(int = -1); 
-	virtual void ClearDepositDrawHistory(int = -1); 
+	virtual void DisregardHistorySamples(int = -1, int = -1); 
+	virtual void ClearDepositDrawHistory(int = -1, int = -1); 
+	virtual void consolidate(int = -1, int = -1); 
 	void restore();
 
 	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 

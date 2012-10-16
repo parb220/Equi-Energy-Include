@@ -68,10 +68,8 @@ protected:
 	CSampleIDWeight x_current;	// own: current sample
 	CSampleIDWeight x_new;		// own: new sample 
 	int ring_index_current; // energy ring index of current sample
-	vector <int > ring_size;	// size of the rings at this level
 
 	int GetRingIndex(double) const;	// determine at which energy level of the given energy value
-	int BinID(int energy_index) const { return id*K+energy_index; } 	// determine the index of the bin in storage given the ring index
 	int BinID(double ) const;	// determine the index of the bin in storage given the energy
 	
 	/* target and MH proposal distributions of this level */
@@ -96,15 +94,17 @@ public:
 	CModel *ultimate_target;		// access: target distribution; 
 
 	// construct and destruct
-	CEES_Node(int =0, CTransitionModel * =NULL, CEES_Node * =NULL);
-	CEES_Node(int, CTransitionModel **, CEES_Node * =NULL);
+	CEES_Node(); 
+	CEES_Node(int, CTransitionModel *, CEES_Node *);
+	CEES_Node(int, CTransitionModel **, CEES_Node *);
 	~CEES_Node();
 
 	// id	
 	void SetID_LocalTarget(int); 	// also sets the local target distribution
 	int GetID() const { return id; }
 	CEES_Node * GetNextLevel() const { return next_level; }
-
+	int BinID(int energy_index) const { return id*K+energy_index; } 	// determine the index of the bin in storage given the ring index
+	
 	// proposal 
 	void SetProposal (CTransitionModel *transition, int iBlock =0) { proposal[iBlock] = transition; }
 	CTransitionModel *GetProposal(int iBlock =0) const { return proposal[iBlock]; }
@@ -115,6 +115,7 @@ public:
 	// energy and temperature of this level
 	double GetEnergy() const { return CEES_Node::H[id]; }
 	double GetTemperature() const { return CEES_Node::T[id]; }
+	double GetMinEnergy(int index=0) const { return min_energy[index]; }
 
 	// Initialization	
 	void Initialize(const gsl_rng *, CModel * =NULL); // use a random distribution model to get the first sample; if CModel * == NULL, directly use target->draw to get the first sample

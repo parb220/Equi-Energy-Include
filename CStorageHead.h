@@ -31,17 +31,18 @@ public:
 	virtual bool DrawSample(int, double *, int, int &, double &, const gsl_rng *) ;  
 	bool empty(int); 
 	bool makedir(); 
-	void finalize()  ;
+	void finalize(int =-1,  int =-1)  ;
 	int GetNumberBins() const { return number_bins; }
 
 	/* for reassigning samples into different bins */
 	virtual void DisregardHistorySamples(int = -1, int = -1); 
 	virtual void ClearDepositDrawHistory(int = -1, int = -1); 
 	virtual void consolidate(int = -1, int = -1); 
-	void restore();
+	void restore(int = -1, int = -1);
+	void RestoreForFetch(int = -1, int = -1); 
 
 	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 
-	friend bool CParameterPackage::LoadCurrentStateFromStorage(CStorageHead &, const gsl_rng *); 
+	friend bool CParameterPackage::LoadCurrentStateFromStorage(CStorageHead &, const gsl_rng *, int=-1); 
 }; 
 
 #endif

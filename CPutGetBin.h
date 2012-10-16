@@ -63,8 +63,9 @@ public:
 	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 
 	void finalize(); 	// save unsaved data
-	void consolidate(); 
-	bool restore();	// load data from a partial file
+	void consolidate(); 	// conslidate partial sample files into complete sample files
+	void restore();	// load data from a partial file
+	void RestoreForFetch(); // load data from a partial file but will not update it later. This is used for single-thread mpi version so that for each level it will load partial files for its higher level for ee draw later
 
 	/* for reassigning samples into different bins */ 
 	void DisregardHistorySamples(); 

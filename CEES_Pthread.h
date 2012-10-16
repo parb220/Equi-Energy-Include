@@ -28,7 +28,7 @@ public:
 	int depositFreq;  
 	vector <double> MHProposalScale;	// own
 
-	CEES_Pthread(int iEnergyLevel =0); 
+	CEES_Pthread(); 
 	CEES_Pthread(int, CTransitionModel *, CEES_Node *); 
 	~CEES_Pthread(); 
 

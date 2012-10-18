@@ -10,6 +10,8 @@ class CModel;
 class CTransitionModel 
 {
 public:
+	CTransitionModel() {}
+	virtual ~CTransitionModel() {}
 	virtual double log_prob(const CSampleIDWeight &x, const CSampleIDWeight &y) const=0; 
 	virtual void draw(CSampleIDWeight&, bool &if_new_sample, const gsl_rng *r, const CSampleIDWeight &x, int B=0) const=0;	// draw a sample to put into y given x
 

@@ -30,7 +30,7 @@ public:
 
 	CEES_Pthread(); 
 	CEES_Pthread(int, CTransitionModel *, CEES_Node *); 
-	~CEES_Pthread(); 
+	virtual ~CEES_Pthread(); 
 
 	static void SetPthreadParameters(int ); 
 	static int mutex_lock(int);

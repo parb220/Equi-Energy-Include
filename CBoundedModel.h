@@ -12,6 +12,7 @@ private:
 	CModel *OriginalModel; 	// Original model to get energy 
 public: 
 	CBoundedModel(double h = 0, double t =0, CModel *original=NULL); 
+	virtual ~CBoundedModel() {}
 	void SetH(double); 
 	void SetT(double); 
 	virtual double log_prob(CSampleIDWeight &) const; 

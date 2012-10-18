@@ -22,6 +22,7 @@ protected:
 	CSampleIDWeight mode; 
 public: 
 	CStateModel(TStateModel * =NULL); 
+	virtual ~CStateModel() {}
 	void SetModel(TStateModel * =NULL); 
 	TStateModel * GetModel() const { return model; }
 	void SetThetaDim(int _thetaDim) { thetaDim = _thetaDim; } 

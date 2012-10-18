@@ -30,13 +30,10 @@ private:
  	bool ReadFromOneFile(string, int &, const vector <int> &index);
 	vector <CSampleIDWeight> ReadSampleFromFile(string) const;  
 
-	bool fetch_status; 
 	int NumberRecord(string) const; 
 public: 
 	CPutGetBin(int _id=0, int _nDumpFile=0, int _capacityPut=0, int _capacityGet=0, string _grandPrefix="", int _suffix=0); 
 	~CPutGetBin();
-
-	bool if_fetchable(); 
 
 	void SetBinID(int _id, int _suffix=0) { id = _id; suffix=_suffix; }
 	int GetBinID() const { return id; }
@@ -52,7 +49,7 @@ public:
 	
 	int GetNumberFileForFetch() const; 
 	int GetNumberFileForDump() const; 
-
+	int GetNumberFileForConsolidate() const; 
 	void SetFileNamePrefix(string _grandPrefix) { filename_prefix = _grandPrefix; } 
 	string GetFileNamePrefix() const { return filename_prefix;}	
 

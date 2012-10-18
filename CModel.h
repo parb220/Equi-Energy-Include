@@ -19,6 +19,7 @@ public:
 		nData = nD; 
 		nParameter = nP; 
 	}
+	virtual ~CModel() {} 
 
 	virtual double log_prob(CSampleIDWeight &x) const = 0; 
 

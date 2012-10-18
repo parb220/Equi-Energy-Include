@@ -15,7 +15,7 @@ protected:	double *mu;
 public:
 		CSimpleGaussianModel(int dim = 0);
 		CSimpleGaussianModel(int, const double *, const double *); 
-		~CSimpleGaussianModel(); 
+		virtual ~CSimpleGaussianModel(); 
 
 		virtual void SetDataDimension(int); 
 		void SetMeanParameter(const double *, int); 

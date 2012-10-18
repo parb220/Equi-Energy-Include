@@ -97,7 +97,7 @@ public:
 	CEES_Node(); 
 	CEES_Node(int, CTransitionModel *, CEES_Node *);
 	CEES_Node(int, CTransitionModel **, CEES_Node *);
-	~CEES_Node();
+	virtual ~CEES_Node();
 
 	// id	
 	void SetID_LocalTarget(int); 	// also sets the local target distribution

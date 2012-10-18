@@ -13,7 +13,7 @@ class CTransitionModel_SimpleGaussian : public CTransitionModel, protected CSimp
 public: 
 	CTransitionModel_SimpleGaussian(int dim=0): CSimpleGaussianModel(dim) {} 
 	CTransitionModel_SimpleGaussian(int dim, const double *s):CTransitionModel(), CSimpleGaussianModel(dim) { CSimpleGaussianModel::SetSigmaParameter(s,dim);}
-	~CTransitionModel_SimpleGaussian() {}
+	virtual ~CTransitionModel_SimpleGaussian() {}
 
 	virtual void set_step_size(double _s, int =-1); 
 	virtual double get_step_size(int _dim=-1) const; 

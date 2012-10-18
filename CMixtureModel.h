@@ -12,7 +12,7 @@ protected:
 	double *weight; 	// weight of each component; 
 public: 
 	CMixtureModel(int nD=0, int nP=0, int nM=0, double *w = NULL); 
-	~CMixtureModel(); 
+	virtual ~CMixtureModel(); 
 
 	CModel * operator[] (int) const; // Get the pointer to the i-th model; 	
 	void Initialize(int, CModel *); // Let the i-th model point to the argument;    

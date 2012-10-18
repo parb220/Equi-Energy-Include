@@ -15,7 +15,7 @@ protected:
 public:
 	CUniformModel(int nD=0); 
 	CUniformModel(int, const double*, const double*); 
-	~CUniformModel(); 
+	virtual ~CUniformModel(); 
 
 	virtual void SetDataDimension(int);  
 	void SetLowerBoundParameter(const double*, int); 

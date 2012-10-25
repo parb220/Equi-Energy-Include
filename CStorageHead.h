@@ -39,6 +39,7 @@ public:
 	virtual void consolidate(int = -1, int = -1); 
 	void restore(int = -1, int = -1);
 	void RestoreForFetch(int = -1, int = -1); 
+	bool empty(int = -1, int = -1) const; 
 
 	friend void CParameterPackage::TraceStorageHead(const CStorageHead &); 
 	friend bool CParameterPackage::LoadCurrentStateFromStorage(CStorageHead &, const gsl_rng *, int=-1); 

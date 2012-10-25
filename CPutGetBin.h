@@ -63,6 +63,7 @@ public:
 	void consolidate(); 	// conslidate partial sample files into complete sample files
 	void restore();	// load data from a partial file
 	void RestoreForFetch(); // load data from a partial file but will not update it later. This is used for single-thread mpi version so that for each level it will load partial files for its higher level for ee draw later
+	bool empty() const; 
 
 	/* for reassigning samples into different bins */ 
 	void DisregardHistorySamples(); 

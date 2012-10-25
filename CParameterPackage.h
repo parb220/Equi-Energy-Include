@@ -65,7 +65,9 @@ public:
 	
 	void SetBlock(int * = NULL); 
 	bool SetEnergyBound();
+	double GetEnergyBound(int _level) const { return h[_level]; }
 	bool SetTemperature();
+	double GetTemperature(int _level) const { return t[_level]; }
 	bool SetMHProposalScale();
 	void SetMHProposalScale(int, const double *, int); 
 	void SetCurrentState(const gsl_rng *, int = -1); 

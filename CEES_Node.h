@@ -31,7 +31,7 @@ public:
 	static int GetEnergyLevelNumber() { return K; }
 	
 	static void SetEquiEnergyJumpProb(double _p) { pee = _p; } 
-	int GetEquiEnergyJumpProb() { return pee; }
+	double GetEquiEnergyJumpProb() { return pee; }
 	
 	static bool SetEnergyLevels(double *, int); 
 

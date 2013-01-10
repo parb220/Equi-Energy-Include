@@ -32,6 +32,7 @@ public:
 	bool makedir(); 
 	void finalize(int =-1,  int =-1)  ;
 	int GetNumberBins() const { return number_bins; }
+	int GetNumberRecrod(int index) const { return bin[index].GetTotalNumberRecord(); }
 
 	/* for reassigning samples into different bins */
 	virtual void DisregardHistorySamples(int = -1, int = -1); 

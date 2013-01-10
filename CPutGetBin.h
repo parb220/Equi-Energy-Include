@@ -68,6 +68,9 @@ public:
 	/* for reassigning samples into different bins */ 
 	void DisregardHistorySamples(); 
 	void ClearDepositDrawHistory(); 
+
+	/* to get the number of records in this bin */
+	int GetTotalNumberRecord() const; 
 }; 
 
 #endif

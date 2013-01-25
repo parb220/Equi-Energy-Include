@@ -31,6 +31,8 @@ private:
 	vector <CSampleIDWeight> ReadSampleFromFile(string) const;  
 
 	int NumberRecord(string) const; 
+	bool LoadLeastWeightSample(string, CSampleIDWeight &) const; 
+	bool LoadMostWeightSample(string, CSampleIDWeight &) const; 
 public: 
 	CPutGetBin(int _id=0, int _nDumpFile=0, int _capacityPut=0, int _capacityGet=0, string _grandPrefix="", int _suffix=0); 
 	~CPutGetBin();
@@ -56,6 +58,10 @@ public:
 	int DepositSample(const CSampleIDWeight &); 
 	int DepositSample(const double *, int, int, double _weight=1.0); 
 
+	bool DrawLeastWeightSample(CSampleIDWeight &) const;  
+	bool DrawLeastWeightSample(double *, int, int &, double &) const; 
+	bool DrawMostWeightSample(CSampleIDWeight &) const; 
+	bool DrawMostWeightSample(double *, int, int &, double &) const; 
 	bool DrawSample(const gsl_rng *, CSampleIDWeight &); 
 	bool DrawSample(double *, int, int &, double &, const gsl_rng *);  
 

@@ -42,7 +42,8 @@ public:
 
 	int GetSize_Data() const; 
 
-	double *GetData() { return data; }
+	double *GetData() const { return data; }  
+	double *Data() { return data; }
 	double & GetData(int i) { return data[i]; }
 	double & operator [](int i) { return data[i]; }
 	void CopyData(double *, int, int &, double &) const;
